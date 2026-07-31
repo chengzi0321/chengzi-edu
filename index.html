@@ -1,0 +1,4876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="橙子早教">
+<meta name="theme-color" content="#FFF8E7">
+<meta name="description" content="0-12个月宝宝早教启蒙工作台">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>🍊 橙子早教工作台</title>
+<style>
+/* ============================================================
+   橙子早教工作台 - CSS设计系统
+   ============================================================ */
+
+/* ---------- CSS变量定义 ---------- */
+:root {
+  /* 主色调 - 马卡龙色系 */
+  --color-cream:     #FFF8E7;
+  --color-mint:      #B9E5D7;
+  --color-mint-bg:   #F0FBF7;
+  --color-mint-dark: #5BB89E;
+  --color-pink:      #FFB7B2;
+  --color-pink-bg:   #FFF5F4;
+  --color-pink-dark: #E8857F;
+  --color-sky:       #C7CEEA;
+  --color-sky-bg:    #F5F7FE;
+  --color-sky-dark:  #7B89C7;
+  --color-peach:     #FFDAC1;
+  --color-peach-bg:  #FFF9F2;
+  --color-peach-dark:#E8A87C;
+  --color-lavender:  #E2ECE9;
+  --color-orange:    #FFAB75;
+
+  /* 文字色 */
+  --text-primary:    #4A4A4A;
+  --text-secondary:  #8B8B8B;
+  --text-light:      #B0B0B0;
+  --text-white:      #FFFFFF;
+
+  /* 功能色 */
+  --color-success:   #95D5B2;
+  --color-warning:   #FFE5B4;
+  --color-danger:    #FF9999;
+  --color-white:     #FFFFFF;
+
+  /* 阴影 */
+  --shadow-soft:  0 4px 16px rgba(0,0,0,0.06);
+  --shadow-card:  0 2px 12px rgba(0,0,0,0.04);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+  --shadow-nav:   0 -2px 16px rgba(0,0,0,0.06);
+
+  /* 字号 */
+  --font-size-xs:  12px;
+  --font-size-sm:  14px;
+  --font-size-base:16px;
+  --font-size-lg:  20px;
+  --font-size-xl:  28px;
+  --font-size-2xl: 36px;
+
+  /* 字重 */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-bold:   600;
+
+  /* 间距 */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl:48px;
+
+  /* 圆角 */
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
+
+  /* 触摸目标 */
+  --touch-min: 44px;
+
+  /* 过渡 */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- 重置与基础 ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+               "Microsoft YaHei", "Helvetica Neue", "Noto Sans SC",
+               "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji",
+               "Twemoji Mozilla", "EmojiOne Color", "Android Emoji",
+               sans-serif;
+  background: var(--color-cream);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* emoji字体优化 */
+.header-logo .logo-icon,
+.nav-item .nav-icon,
+.knowledge-icon,
+.sound-icon,
+.game-icon,
+.milestone-category-header,
+.title-icon,
+.focus-control-btn,
+.btn,
+.tag,
+.domain-icon,
+.skill-icon,
+.welcome-icon,
+.modal-title,
+.empty-icon,
+.safety-icon,
+.stat-num {
+  font-variant-emoji: emoji;
+  text-rendering: optimizeLegibility;
+}
+
+input, button, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---------- 顶部栏 ---------- */
+#app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  z-index: 100;
+  box-shadow: var(--shadow-card);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.header-logo .logo-icon {
+  font-size: 24px;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.header-age {
+  background: var(--color-peach);
+  color: var(--text-primary);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.header-settings-btn {
+  width: var(--touch-min);
+  height: var(--touch-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: 20px;
+  transition: var(--transition);
+}
+
+.header-settings-btn:active {
+  transform: scale(0.9);
+  background: var(--color-lavender);
+}
+
+/* ---------- 主内容区 ---------- */
+#app-main {
+  padding-top: 56px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+}
+
+.view {
+  display: none;
+  animation: fadeIn 0.3s ease;
+  padding: var(--space-md);
+}
+
+.view.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- 底部导航栏 ---------- */
+#app-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+  box-shadow: var(--shadow-nav);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 100%;
+  color: var(--text-light);
+  font-size: var(--font-size-xs);
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-item .nav-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.nav-item.active {
+  color: var(--text-primary);
+}
+
+.nav-item.active .nav-icon {
+  transform: scale(1.15);
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 3px;
+  border-radius: 0 0 var(--radius-full) var(--radius-full);
+  background: transparent;
+  transition: var(--transition);
+}
+
+.nav-item.active::before {
+  background: var(--color-orange);
+}
+
+/* ---------- 通用组件 ---------- */
+
+/* 卡片 */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-md);
+  animation: slideUp 0.4s ease;
+}
+
+.card-tap {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.card-tap:active {
+  transform: scale(0.97);
+}
+
+/* 模块标题 */
+.section-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.section-title .title-icon {
+  font-size: 22px;
+}
+
+/* 标签 */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.tag-mint  { background: var(--color-mint);  color: var(--color-mint-dark); }
+.tag-pink  { background: var(--color-pink);  color: var(--color-pink-dark); }
+.tag-sky   { background: var(--color-sky);   color: var(--color-sky-dark); }
+.tag-peach { background: var(--color-peach); color: var(--color-peach-dark); }
+.tag-gray  { background: var(--color-lavender); color: var(--text-secondary); }
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: var(--fw-medium);
+  min-height: var(--touch-min);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-primary {
+  background: var(--color-orange);
+  color: var(--text-white);
+}
+
+.btn-mint {
+  background: var(--color-mint);
+  color: var(--color-mint-dark);
+}
+
+.btn-pink {
+  background: var(--color-pink);
+  color: var(--color-pink-dark);
+}
+
+.btn-sky {
+  background: var(--color-sky);
+  color: var(--color-sky-dark);
+}
+
+.btn-peach {
+  background: var(--color-peach);
+  color: var(--color-peach-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-lavender);
+  color: var(--text-secondary);
+}
+
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 6px 16px;
+  font-size: var(--font-size-sm);
+  min-height: 36px;
+}
+
+/* 输入框 */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--color-lavender);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  background: var(--color-white);
+  transition: var(--transition);
+}
+
+.input-field:focus {
+  border-color: var(--color-mint-dark);
+}
+
+/* ---------- 弹窗 ---------- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  max-width: 420px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: scaleIn 0.3s ease;
+}
+
+.modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.modal-body {
+  margin-bottom: var(--space-lg);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.modal-actions .btn {
+  flex: 1;
+}
+
+/* ---------- Toast提示 ---------- */
+#toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(74,74,74,0.92);
+  color: var(--text-white);
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+/* ---------- 空状态 ---------- */
+.empty-state {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  color: var(--text-light);
+}
+
+.empty-state .empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
+}
+
+/* ---------- 安全提示条 ---------- */
+.safety-tip {
+  background: var(--color-warning);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.safety-tip .safety-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   专注力训练模块样式
+   ============================================================ */
+.focus-tabs {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  -webkit-overflow-scrolling: touch;
+}
+
+.focus-tab {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+}
+
+.focus-tab.active {
+  background: var(--color-mint);
+  color: var(--color-mint-dark);
+  font-weight: var(--fw-medium);
+}
+
+.focus-display {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+  position: relative;
+}
+
+.focus-canvas-area {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAFA;
+  position: relative;
+  overflow: hidden;
+}
+
+.focus-card-display {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.focus-card-display svg {
+  width: auto;
+  height: auto;
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 0.1s linear;
+}
+
+.focus-timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-mint-bg);
+  font-size: var(--font-size-sm);
+  color: var(--color-mint-dark);
+}
+
+.focus-timer .timer-text {
+  font-weight: var(--fw-medium);
+}
+
+.focus-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.focus-control-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.focus-control-btn:active {
+  transform: scale(0.9);
+}
+
+.focus-control-btn.main {
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+  background: var(--color-mint);
+}
+
+.focus-mode-row {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.focus-mode-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.focus-mode-btn.active {
+  background: var(--color-mint);
+  color: var(--color-mint-dark);
+  font-weight: var(--fw-medium);
+}
+
+/* 声音按钮网格 */
+.sound-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.sound-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.sound-card:active {
+  transform: scale(0.95);
+  background: var(--color-mint-bg);
+}
+
+.sound-card.playing {
+  background: var(--color-mint);
+}
+
+.sound-card .sound-icon {
+  font-size: 36px;
+  margin-bottom: var(--space-sm);
+}
+
+.sound-card .sound-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+}
+
+.sound-card .sound-desc {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* 速度调节 */
+.speed-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.speed-control input[type="range"] {
+  flex: 1;
+  max-width: 200px;
+  accent-color: var(--color-mint-dark);
+}
+
+/* ============================================================
+   早教启蒙模块样式
+   ============================================================ */
+.learn-overview {
+  background: var(--color-pink-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.learn-overview .age-display {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-pink-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.learn-overview .age-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.development-summary {
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.development-summary .dev-item {
+  margin-bottom: var(--space-sm);
+}
+
+.development-summary .dev-item:last-child {
+  margin-bottom: 0;
+}
+
+.development-summary .dev-label {
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+}
+
+.learn-domains {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.domain-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.domain-card:active {
+  transform: scale(0.96);
+}
+
+.domain-card .domain-icon {
+  font-size: 36px;
+  margin-bottom: var(--space-sm);
+}
+
+.domain-card .domain-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.domain-card .domain-desc {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+}
+
+/* 训练项目详情 */
+.training-item {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-card);
+}
+
+.training-item .training-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.training-item .training-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.training-item .training-steps {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-sm);
+}
+
+.training-item .training-steps .step {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.training-item .training-steps .step-num {
+  color: var(--color-pink-dark);
+  font-weight: var(--fw-medium);
+  flex-shrink: 0;
+}
+
+.milestone-list {
+  background: var(--color-pink-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.milestone-list .milestone-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-pink-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.milestone-list .milestone-item {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.milestone-list .milestone-item::before {
+  content: '✓';
+  color: var(--color-success);
+  font-weight: var(--fw-bold);
+}
+
+/* ============================================================
+   成长记录模块样式
+   ============================================================ */
+.growth-sub-tabs {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.growth-sub-tab {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+}
+
+.growth-sub-tab.active {
+  background: var(--color-sky);
+  color: var(--color-sky-dark);
+  font-weight: var(--fw-medium);
+}
+
+.growth-section {
+  display: none;
+}
+
+.growth-section.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* 里程碑分类 */
+.milestone-category {
+  margin-bottom: var(--space-lg);
+}
+
+.milestone-category-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-base);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.milestone-check-item {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.milestone-check-item.done {
+  background: var(--color-sky-bg);
+}
+
+.milestone-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-sky);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--color-white);
+  transition: var(--transition);
+  margin-top: 2px;
+}
+
+.milestone-check-item.done .milestone-checkbox {
+  background: var(--color-sky-dark);
+  border-color: var(--color-sky-dark);
+}
+
+.milestone-content {
+  flex: 1;
+}
+
+.milestone-content .milestone-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.milestone-content .milestone-date {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+}
+
+/* 成长曲线 */
+.growth-chart-container {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-card);
+}
+
+.growth-chart-container canvas {
+  width: 100%;
+  height: 200px;
+}
+
+.growth-input-form {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-card);
+}
+
+.form-row {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+/* 新技能时间线 */
+.skill-timeline-item {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  gap: var(--space-md);
+}
+
+.skill-timeline-item .skill-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.skill-timeline-item .skill-body {
+  flex: 1;
+}
+
+.skill-timeline-item .skill-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.skill-timeline-item .skill-date {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+}
+
+/* 打卡日历 */
+.checkin-stats {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.checkin-stat-card {
+  flex: 1;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.checkin-stat-card .stat-num {
+  font-size: var(--font-size-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-sky-dark);
+}
+
+.checkin-stat-card .stat-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.checkin-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.checkin-day {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+  background: var(--color-lavender);
+  transition: var(--transition);
+}
+
+.checkin-day.done {
+  background: var(--color-sky);
+  color: var(--color-sky-dark);
+  font-weight: var(--fw-medium);
+}
+
+.checkin-day.today {
+  border: 2px solid var(--color-sky-dark);
+}
+
+.checkin-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.checkin-item {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.checkin-item.selected {
+  background: var(--color-sky);
+  color: var(--color-sky-dark);
+  font-weight: var(--fw-medium);
+}
+
+/* ============================================================
+   亲子互动模块样式
+   ============================================================ */
+.knowledge-card {
+  background: linear-gradient(135deg, var(--color-peach), var(--color-peach-bg));
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.knowledge-card .knowledge-icon {
+  font-size: 28px;
+  margin-bottom: var(--space-sm);
+}
+
+.knowledge-card .knowledge-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-peach-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.knowledge-card .knowledge-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.game-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.game-card:active {
+  transform: scale(0.98);
+}
+
+.game-card .game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.game-card .game-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.game-card .game-tags {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-sm);
+}
+
+.game-card .game-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.game-card .game-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+}
+
+.game-card .game-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 游戏详情展开 */
+.game-detail {
+  display: none;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-lavender);
+}
+
+.game-detail.show {
+  display: block;
+  animation: slideUp 0.3s ease;
+}
+
+.game-detail .detail-section {
+  margin-bottom: var(--space-md);
+}
+
+.game-detail .detail-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-peach-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.game-detail .step-list {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.game-detail .step-list .step {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.game-detail .step-num {
+  color: var(--color-peach-dark);
+  font-weight: var(--fw-medium);
+  flex-shrink: 0;
+}
+
+.game-detail .material-tag {
+  display: inline-block;
+  background: var(--color-peach-bg);
+  color: var(--color-peach-dark);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  margin-right: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+/* ============================================================
+   设置弹窗
+   ============================================================ */
+.settings-group {
+  margin-bottom: var(--space-lg);
+}
+
+.settings-group-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--fw-bold);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-lavender);
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item .settings-label {
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+}
+
+.settings-item .settings-value {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* 开关 */
+.toggle {
+  width: 48px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-lavender);
+  position: relative;
+  transition: var(--transition);
+}
+
+.toggle.on {
+  background: var(--color-mint-dark);
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  transition: var(--transition);
+}
+
+.toggle.on::after {
+  left: 23px;
+}
+
+/* ============================================================
+   响应式 - 平板
+   ============================================================ */
+@media (min-width: 768px) {
+  #app-main {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  #app-header {
+    max-width: 800px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  #app-nav {
+    max-width: 800px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .view {
+    padding: var(--space-lg);
+  }
+
+  .sound-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .learn-domains {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .checkin-items {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================================================
+   首次设置引导
+   ============================================================ */
+.setup-welcome {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.setup-welcome .welcome-icon {
+  font-size: 64px;
+  margin-bottom: var(--space-md);
+}
+
+.setup-welcome .welcome-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.setup-welcome .welcome-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.setup-form-group {
+  margin-bottom: var(--space-md);
+}
+
+.setup-form-group label {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.gender-select {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.gender-option {
+  flex: 1;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-lavender);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.gender-option.selected {
+  border-color: var(--color-orange);
+  background: var(--color-peach-bg);
+  color: var(--color-peach-dark);
+  font-weight: var(--fw-medium);
+}
+
+/* 免责声明 */
+.disclaimer {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+  line-height: 1.6;
+  text-align: center;
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-cream);
+  border-radius: var(--radius-md);
+}
+
+/* 滚动区域 */
+.scroll-y {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 隐藏 */
+.hidden {
+  display: none !important;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========== 顶部栏 ========== -->
+<header id="app-header">
+  <div class="header-logo">
+    <span class="logo-icon">🍊</span>
+    <span>橙子早教工作台</span>
+  </div>
+  <div class="header-info">
+    <span class="header-age" id="header-age">-</span>
+    <button class="header-settings-btn" onclick="App.openSettings()">⚙️</button>
+  </div>
+</header>
+
+<!-- ========== 主内容区 ========== -->
+<main id="app-main">
+
+  <!-- ===== 专注力训练视图 ===== -->
+  <section class="view" id="view-focus">
+    <div class="safety-tip">
+      <span class="safety-icon">⏱️</span>
+      <span>每次训练不超过2分钟，宝宝转头或揉眼时请立即停止</span>
+    </div>
+
+    <div class="focus-tabs">
+      <button class="focus-tab active" data-focus-type="blackwhite" onclick="FocusModule.switchType('blackwhite')">黑白卡</button>
+      <button class="focus-tab" data-focus-type="color" onclick="FocusModule.switchType('color')">彩色卡</button>
+      <button class="focus-tab" data-focus-type="animation" onclick="FocusModule.switchType('animation')">追视动画</button>
+      <button class="focus-tab" data-focus-type="sound" onclick="FocusModule.switchType('sound')">声音互动</button>
+    </div>
+
+    <!-- 卡片/动画显示区 -->
+    <div class="focus-display" id="focus-display">
+      <div class="focus-canvas-area" id="focus-canvas-area">
+        <div class="focus-card-display" id="focus-card-display"></div>
+      </div>
+      <div class="focus-timer">
+        <span>🕐 <span class="timer-text" id="focus-timer-text">00:00</span></span>
+        <span id="focus-counter">1/8</span>
+      </div>
+    </div>
+
+    <!-- 声音网格（仅声音模式显示） -->
+    <div class="sound-grid hidden" id="sound-grid"></div>
+
+    <!-- 速度控制（仅动画模式显示） -->
+    <div class="speed-control hidden" id="speed-control">
+      <span>慢</span>
+      <input type="range" id="speed-range" min="1" max="5" value="3" step="1">
+      <span>快</span>
+    </div>
+
+    <!-- 模式选择 -->
+    <div class="focus-mode-row" id="focus-mode-row">
+      <button class="focus-mode-btn active" data-mode="static" onclick="FocusModule.switchMode('static')">注视</button>
+      <button class="focus-mode-btn" data-mode="tracking" onclick="FocusModule.switchMode('tracking')">追视</button>
+      <button class="focus-mode-btn" data-mode="auto" onclick="FocusModule.switchMode('auto')">自动播放</button>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="focus-controls" id="focus-controls">
+      <button class="focus-control-btn" onclick="FocusModule.prev()">‹</button>
+      <button class="focus-control-btn main" id="focus-play-btn" onclick="FocusModule.togglePlay()">▶</button>
+      <button class="focus-control-btn" onclick="FocusModule.next()">›</button>
+    </div>
+  </section>
+
+  <!-- ===== 早教启蒙视图 ===== -->
+  <section class="view" id="view-learn">
+    <div class="learn-overview">
+      <div class="age-display" id="learn-age-display">-</div>
+      <div class="age-label">橙子的月龄</div>
+      <div class="development-summary" id="dev-summary"></div>
+    </div>
+
+    <h3 class="section-title"><span class="title-icon">📚</span>四大发展领域</h3>
+    <div class="learn-domains" id="learn-domains"></div>
+
+    <div id="domain-detail"></div>
+  </section>
+
+  <!-- ===== 成长记录视图 ===== -->
+  <section class="view" id="view-growth">
+    <div class="growth-sub-tabs">
+      <button class="growth-sub-tab active" data-growth-tab="milestone" onclick="GrowthModule.switchTab('milestone')">里程碑</button>
+      <button class="growth-sub-tab" data-growth-tab="measurement" onclick="GrowthModule.switchTab('measurement')">身高体重</button>
+      <button class="growth-sub-tab" data-growth-tab="skill" onclick="GrowthModule.switchTab('skill')">新技能</button>
+      <button class="growth-sub-tab" data-growth-tab="checkin" onclick="GrowthModule.switchTab('checkin')">每日打卡</button>
+    </div>
+
+    <!-- 里程碑 -->
+    <div class="growth-section active" id="growth-milestone">
+      <div id="milestone-list"></div>
+    </div>
+
+    <!-- 身高体重 -->
+    <div class="growth-section" id="growth-measurement">
+      <div class="growth-chart-container">
+        <canvas id="growth-chart" width="600" height="200"></canvas>
+      </div>
+      <div class="growth-input-form">
+        <h3 class="section-title" style="font-size:16px;">📝 记录今日数据</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>身高(cm)</label>
+            <input type="number" class="input-field" id="input-height" placeholder="63.5" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>体重(kg)</label>
+            <input type="number" class="input-field" id="input-weight" placeholder="6.8" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>头围(cm)</label>
+            <input type="number" class="input-field" id="input-head" placeholder="41.2" step="0.1">
+          </div>
+        </div>
+        <button class="btn btn-sky btn-block btn-sm" onclick="GrowthModule.addMeasurement()">💾 保存记录</button>
+      </div>
+      <div id="measurement-list"></div>
+    </div>
+
+    <!-- 新技能 -->
+    <div class="growth-section" id="growth-skill">
+      <div class="growth-input-form">
+        <h3 class="section-title" style="font-size:16px;">✨ 记录新技能</h3>
+        <div class="form-group" style="margin-bottom:12px;">
+          <label style="font-size:12px;color:#8B8B8B;margin-bottom:4px;display:block;">分类</label>
+          <select class="input-field" id="skill-category">
+            <option value="motor">大动作</option>
+            <option value="fine">精细动作</option>
+            <option value="language">语言</option>
+            <option value="cognitive">认知</option>
+            <option value="social">社交</option>
+            <option value="other">其他</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:12px;">
+          <label style="font-size:12px;color:#8B8B8B;margin-bottom:4px;display:block;">描述</label>
+          <input type="text" class="input-field" id="skill-desc" placeholder="如：今天橙子第一次成功翻身了！">
+        </div>
+        <button class="btn btn-sky btn-block btn-sm" onclick="GrowthModule.addSkill()">💾 保存</button>
+      </div>
+      <div id="skill-list"></div>
+    </div>
+
+    <!-- 每日打卡 -->
+    <div class="growth-section" id="growth-checkin">
+      <div class="checkin-stats">
+        <div class="checkin-stat-card">
+          <div class="stat-num" id="stat-week">0</div>
+          <div class="stat-label">本周打卡</div>
+        </div>
+        <div class="checkin-stat-card">
+          <div class="stat-num" id="stat-month">0</div>
+          <div class="stat-label">本月打卡</div>
+        </div>
+        <div class="checkin-stat-card">
+          <div class="stat-num" id="stat-streak">0</div>
+          <div class="stat-label">连续打卡</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="section-title" style="font-size:16px;">📅 本月打卡</h3>
+        <div class="checkin-grid" id="checkin-grid"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="section-title" style="font-size:16px;">✅ 今日训练项目</h3>
+        <div class="checkin-items" id="checkin-items"></div>
+        <div class="form-group" style="margin-top:12px;">
+          <label style="font-size:12px;color:#8B8B8B;margin-bottom:4px;display:block;">宝宝反应</label>
+          <select class="input-field" id="checkin-mood">
+            <option value="happy">😊 开心投入</option>
+            <option value="normal">😐 反应一般</option>
+            <option value="tired">😴 有些疲倦</option>
+          </select>
+        </div>
+        <button class="btn btn-sky btn-block btn-sm" style="margin-top:8px;" onclick="GrowthModule.saveCheckin()">✅ 完成打卡</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 亲子互动视图 ===== -->
+  <section class="view" id="view-interact">
+    <div class="knowledge-card" id="knowledge-card"></div>
+
+    <h3 class="section-title"><span class="title-icon">🎮</span>本周推荐游戏</h3>
+    <div id="weekly-games"></div>
+
+    <h3 class="section-title" style="margin-top:24px;"><span class="title-icon">📚</span>全部游戏库</h3>
+    <div id="all-games"></div>
+  </section>
+
+</main>
+
+<!-- ========== 底部导航栏 ========== -->
+<nav id="app-nav">
+  <button class="nav-item active" data-view="focus" onclick="Router.go('focus')">
+    <span class="nav-icon">🎯</span>
+    <span>专注力</span>
+  </button>
+  <button class="nav-item" data-view="learn" onclick="Router.go('learn')">
+    <span class="nav-icon">📖</span>
+    <span>早教</span>
+  </button>
+  <button class="nav-item" data-view="growth" onclick="Router.go('growth')">
+    <span class="nav-icon">📊</span>
+    <span>成长</span>
+  </button>
+  <button class="nav-item" data-view="interact" onclick="Router.go('interact')">
+    <span class="nav-icon">💕</span>
+    <span>互动</span>
+  </button>
+</nav>
+
+<!-- ========== 首次设置弹窗 ========== -->
+<div class="modal-overlay" id="modal-setup">
+  <div class="modal">
+    <div class="setup-welcome">
+      <div class="welcome-icon">🍊</div>
+      <div class="welcome-title">欢迎来到橙子早教工作台</div>
+      <div class="welcome-desc">先来填写宝宝的基本信息吧</div>
+    </div>
+    <div class="setup-form-group">
+      <label>宝宝小名</label>
+      <input type="text" class="input-field" id="setup-nickname" value="橙子" placeholder="宝宝小名">
+    </div>
+    <div class="setup-form-group">
+      <label>出生日期</label>
+      <input type="date" class="input-field" id="setup-birthdate">
+    </div>
+    <div class="setup-form-group">
+      <label>性别</label>
+      <div class="gender-select">
+        <button class="gender-option selected" data-gender="female" onclick="App.selectGender('female')">👧 女宝</button>
+        <button class="gender-option" data-gender="male" onclick="App.selectGender('male')">👦 男宝</button>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" onclick="App.saveSetup()">开始使用 →</button>
+    <div class="disclaimer">
+      本应用为家长早教辅助工具，不替代专业医疗建议。宝宝发育有个体差异，如有疑虑请咨询医生。不建议让宝宝直接看屏幕。
+    </div>
+  </div>
+</div>
+
+<!-- ========== 设置弹窗 ========== -->
+<div class="modal-overlay" id="modal-settings">
+  <div class="modal">
+    <div class="modal-title">⚙️ 设置</div>
+    <div class="modal-body">
+
+      <div class="settings-group">
+        <div class="settings-group-title">宝宝信息</div>
+        <div class="settings-item">
+          <span class="settings-label">小名</span>
+          <input type="text" class="input-field" id="settings-nickname" style="width:120px;text-align:right;">
+        </div>
+        <div class="settings-item">
+          <span class="settings-label">出生日期</span>
+          <input type="date" class="input-field" id="settings-birthdate" style="width:160px;">
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">训练设置</div>
+        <div class="settings-item">
+          <span class="settings-label">音效</span>
+          <div class="toggle on" id="toggle-sound" onclick="App.toggleSetting('soundEnabled', 'toggle-sound')"></div>
+        </div>
+        <div class="settings-item">
+          <span class="settings-label">自动播放卡片</span>
+          <div class="toggle on" id="toggle-autoplay" onclick="App.toggleSetting('autoPlayCards', 'toggle-autoplay')"></div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">数据管理</div>
+        <div class="settings-item card-tap" onclick="App.exportData()">
+          <span class="settings-label">📤 导出数据</span>
+          <span class="settings-value">›</span>
+        </div>
+        <div class="settings-item card-tap" onclick="App.importData()">
+          <span class="settings-label">📥 导入数据</span>
+          <span class="settings-value">›</span>
+        </div>
+        <div class="settings-item card-tap" onclick="App.clearData()">
+          <span class="settings-label" style="color:#FF9999;">🗑️ 清除所有数据</span>
+          <span class="settings-value">›</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="App.closeSettings()">取消</button>
+      <button class="btn btn-primary" onclick="App.saveSettings()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Toast ========== -->
+<div id="toast"></div>
+
+<!-- ========== 隐藏文件上传 ========== -->
+<input type="file" id="import-file" accept=".json" style="display:none;">
+
+<script>
+/* ============================================================
+   橙子早教工作台 - JavaScript
+   ============================================================ */
+
+/* ============================================================
+   第一部分：数据管理器 DataManager
+   ============================================================ */
+const DataManager = {
+  STORAGE_KEY: 'oranger_edu_data',
+  data: null,
+
+  // 默认数据结构
+  getDefaultData() {
+    return {
+      babyProfile: {
+        nickname: '橙子',
+        birthDate: '',
+        gender: 'female',
+        createdAt: new Date().toISOString()
+      },
+      milestones: [],
+      growthRecords: [],
+      skillRecords: [],
+      checkInRecords: [],
+      focusSessions: [],
+      gameRecords: [],
+      favoriteGames: [],
+      settings: {
+        soundEnabled: true,
+        volumeLevel: 0.3,
+        autoPlayCards: true,
+        cardDuration: 8,
+        trackingSpeed: 'medium',
+        theme: 'macaron'
+      }
+    };
+  },
+
+  load() {
+    try {
+      const raw = localStorage.getItem(this.STORAGE_KEY);
+      if (raw) {
+        this.data = JSON.parse(raw);
+        // 确保所有字段存在
+        const def = this.getDefaultData();
+        for (const key in def) {
+          if (!(key in this.data)) {
+            this.data[key] = def[key];
+          }
+        }
+      } else {
+        this.data = this.getDefaultData();
+      }
+    } catch(e) {
+      console.error('数据加载失败:', e);
+      this.data = this.getDefaultData();
+    }
+    return this.data;
+  },
+
+  save() {
+    try {
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.data));
+    } catch(e) {
+      console.error('数据保存失败:', e);
+      Utils.toast('数据保存失败');
+    }
+  },
+
+  getBabyProfile() {
+    return this.data.babyProfile;
+  },
+
+  calcMonthAge() {
+    const profile = this.data.babyProfile;
+    if (!profile.birthDate) return { months: 0, days: 0, total: 0, text: '未设置' };
+    const birth = new Date(profile.birthDate);
+    const now = new Date();
+    let months = (now.getFullYear() - birth.getFullYear()) * 12 + (now.getMonth() - birth.getMonth());
+    let days = now.getDate() - birth.getDate();
+    if (days < 0) {
+      months--;
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+    if (months < 0) months = 0;
+    const total = months * 30 + days;
+    const text = months > 0 ? `${months}个月${days}天` : `${days}天`;
+    return { months, days, total, text };
+  },
+
+  calcWeekAge() {
+    const profile = this.data.babyProfile;
+    if (!profile.birthDate) return 0;
+    const birth = new Date(profile.birthDate);
+    const now = new Date();
+    const diff = now - birth;
+    return Math.floor(diff / (7 * 24 * 60 * 60 * 1000));
+  },
+
+  // 里程碑
+  toggleMilestone(id, achieved) {
+    let milestone = this.data.milestones.find(m => m.id === id);
+    if (achieved) {
+      if (!milestone) {
+        this.data.milestones.push({ id, achieved: true, achievedDate: Utils.today() });
+      } else {
+        milestone.achieved = true;
+        milestone.achievedDate = Utils.today();
+      }
+    } else {
+      if (milestone) {
+        milestone.achieved = false;
+        delete milestone.achievedDate;
+      }
+    }
+    this.save();
+  },
+
+  getMilestone(id) {
+    return this.data.milestones.find(m => m.id === id);
+  },
+
+  // 成长记录
+  addGrowthRecord(record) {
+    record.date = record.date || Utils.today();
+    this.data.growthRecords.push(record);
+    this.data.growthRecords.sort((a,b) => new Date(a.date) - new Date(b.date));
+    this.save();
+  },
+
+  // 新技能
+  addSkillRecord(record) {
+    record.id = 'skill_' + Date.now();
+    record.date = record.date || Utils.today();
+    this.data.skillRecords.unshift(record);
+    this.save();
+  },
+
+  // 打卡
+  addCheckIn(record) {
+    record.date = record.date || Utils.today();
+    // 同一天覆盖
+    const idx = this.data.checkInRecords.findIndex(c => c.date === record.date);
+    if (idx >= 0) {
+      this.data.checkInRecords[idx] = record;
+    } else {
+      this.data.checkInRecords.push(record);
+    }
+    this.save();
+  },
+
+  getCheckIn(date) {
+    return this.data.checkInRecords.find(c => c.date === date);
+  },
+
+  // 专注力训练记录
+  addFocusSession(session) {
+    session.date = Utils.today();
+    this.data.focusSessions.push(session);
+    this.save();
+  },
+
+  // 游戏记录
+  addGameRecord(gameId, rating) {
+    this.data.gameRecords.push({ gameId, date: Utils.today(), rating: rating || 5 });
+    this.save();
+  },
+
+  isGamePlayed(gameId) {
+    return this.data.gameRecords.some(g => g.gameId === gameId);
+  },
+
+  toggleFavorite(gameId) {
+    const idx = this.data.favoriteGames.indexOf(gameId);
+    if (idx >= 0) {
+      this.data.favoriteGames.splice(idx, 1);
+    } else {
+      this.data.favoriteGames.push(gameId);
+    }
+    this.save();
+  },
+
+  isFavorite(gameId) {
+    return this.data.favoriteGames.includes(gameId);
+  },
+
+  // 设置
+  getSettings() {
+    return this.data.settings;
+  },
+
+  updateSettings(partial) {
+    Object.assign(this.data.settings, partial);
+    this.save();
+  },
+
+  // 数据导出导入
+  exportData() {
+    return JSON.stringify(this.data, null, 2);
+  },
+
+  importData(jsonStr) {
+    try {
+      const obj = JSON.parse(jsonStr);
+      this.data = Object.assign(this.getDefaultData(), obj);
+      this.save();
+      return true;
+    } catch(e) {
+      return false;
+    }
+  },
+
+  clearAll() {
+    this.data = this.getDefaultData();
+    this.save();
+  }
+};
+
+/* ============================================================
+   第二部分：工具函数 Utils
+   ============================================================ */
+const Utils = {
+  today() {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  },
+
+  formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    return `${d.getMonth()+1}月${d.getDate()}日`;
+  },
+
+  toast(msg, duration) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => {
+      el.classList.remove('show');
+    }, duration || 2000);
+  },
+
+  // Web Audio API
+  audioCtx: null,
+  getAudioCtx() {
+    if (!this.audioCtx) {
+      try {
+        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      } catch(e) {
+        return null;
+      }
+    }
+    return this.audioCtx;
+  },
+
+  // 生成摇铃声
+  playBell() {
+    const ctx = this.getAudioCtx();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    const gain = ctx.createGain();
+    gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.3, now + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+
+    [800, 1000, 1200].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const g = ctx.createGain();
+      g.gain.value = 0.3;
+      osc.connect(g);
+      g.connect(gain);
+      osc.start(now + i * 0.02);
+      osc.stop(now + 1.5);
+    });
+  },
+
+  // 叮咚声
+  playDingDong() {
+    const ctx = this.getAudioCtx();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    const notes = [
+      { freq: 523.25, time: 0 },   // C5
+      { freq: 659.25, time: 0.3 }   // E5
+    ];
+    notes.forEach(n => {
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = n.freq;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0, now + n.time);
+      gain.gain.linearRampToValueAtTime(0.25, now + n.time + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + n.time + 1.5);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now + n.time);
+      osc.stop(now + n.time + 1.5);
+    });
+  },
+
+  // 白噪音
+  noiseSource: null,
+  noiseGain: null,
+  playWhiteNoise() {
+    this.stopWhiteNoise();
+    const ctx = this.getAudioCtx();
+    if (!ctx) return;
+    const bufferSize = 2 * ctx.sampleRate;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const output = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+    this.noiseSource = ctx.createBufferSource();
+    this.noiseSource.buffer = buffer;
+    this.noiseSource.loop = true;
+    this.noiseGain = ctx.createGain();
+    this.noiseGain.gain.value = 0.08;
+    this.noiseSource.connect(this.noiseGain);
+    this.noiseGain.connect(ctx.destination);
+    this.noiseSource.start();
+  },
+
+  stopWhiteNoise() {
+    if (this.noiseSource) {
+      try { this.noiseSource.stop(); } catch(e) {}
+      this.noiseSource = null;
+    }
+  },
+
+  // 雨声（过滤白噪音）
+  playRain() {
+    this.stopWhiteNoise();
+    const ctx = this.getAudioCtx();
+    if (!ctx) return;
+    const bufferSize = 2 * ctx.sampleRate;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const output = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = (Math.random() * 2 - 1) * 0.5;
+    }
+    this.noiseSource = ctx.createBufferSource();
+    this.noiseSource.buffer = buffer;
+    this.noiseSource.loop = true;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 800;
+    this.noiseGain = ctx.createGain();
+    this.noiseGain.gain.value = 0.15;
+    this.noiseSource.connect(filter);
+    filter.connect(this.noiseGain);
+    this.noiseGain.connect(ctx.destination);
+    this.noiseSource.start();
+  },
+
+  // 播放音符
+  playNote(freq, duration) {
+    const ctx = this.getAudioCtx();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.2, now + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + (duration || 0.5));
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + (duration || 0.5));
+  },
+
+  // 停止所有声音
+  stopAllSounds() {
+    this.stopWhiteNoise();
+  },
+
+  // 震动反馈
+  vibrate(ms) {
+    if (navigator.vibrate) {
+      navigator.vibrate(ms || 10);
+    }
+  }
+};
+
+</script>
+
+<script>
+/* ============================================================
+   第三部分：内容数据（黑白卡、彩色卡、游戏库、里程碑等）
+   ============================================================ */
+
+/* ---------- 黑白卡SVG数据（8张） ---------- */
+const BLACKWHITE_CARDS = [
+  {
+    name: '同心圆',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#ffffff"/>
+      <circle cx="200" cy="200" r="170" fill="#000"/>
+      <circle cx="200" cy="200" r="130" fill="#fff"/>
+      <circle cx="200" cy="200" r="90" fill="#000"/>
+      <circle cx="200" cy="200" r="50" fill="#fff"/>
+      <circle cx="200" cy="200" r="15" fill="#000"/>
+    </svg>`
+  },
+  {
+    name: '棋盘格',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#fff"/>
+      ${(() => {let s='';for(let r=0;r<5;r++){for(let c=0;c<5;c++){if((r+c)%2===0){s+=`<rect x="${c*80}" y="${r*80}" width="80" height="80" fill="#000"/>`;}}}return s;})()}
+    </svg>`
+  },
+  {
+    name: '宽条纹',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#fff"/>
+      <rect x="0" y="40" width="400" height="60" fill="#000"/>
+      <rect x="0" y="160" width="400" height="60" fill="#000"/>
+      <rect x="0" y="280" width="400" height="60" fill="#000"/>
+    </svg>`
+  },
+  {
+    name: '笑脸',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#fff"/>
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#000" stroke-width="10"/>
+      <circle cx="155" cy="170" r="22" fill="#000"/>
+      <circle cx="245" cy="170" r="22" fill="#000"/>
+      <path d="M 150 250 Q 200 300 250 250" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+    </svg>`
+  },
+  {
+    name: '三角与圆',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#fff"/>
+      <polygon points="200,60 340,300 60,300" fill="#000"/>
+      <circle cx="200" cy="220" r="50" fill="#fff"/>
+    </svg>`
+  },
+  {
+    name: '花瓣放射',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#fff"/>
+      ${(() => {let s='';for(let i=0;i<8;i++){const a=i*45;const r1=40;const r2=170;const x1=200+r1*Math.cos(a*Math.PI/180);const y1=200+r1*Math.sin(a*Math.PI/180);const x2=200+r2*Math.cos(a*Math.PI/180);const y2=200+r2*Math.sin(a*Math.PI/180);s+=`<ellipse cx="${(x1+x2)/2}" cy="${(y1+y2)/2}" rx="30" ry="${(r2-r1)/2}" transform="rotate(${a+90} ${(x1+x2)/2} ${(y1+y2)/2})" fill="#000"/>`;}return s;})()}
+      <circle cx="200" cy="200" r="35" fill="#000"/>
+    </svg>`
+  },
+  {
+    name: '小熊',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#fff"/>
+      <circle cx="130" cy="130" r="40" fill="#000"/>
+      <circle cx="270" cy="130" r="40" fill="#000"/>
+      <circle cx="130" cy="130" r="18" fill="#fff"/>
+      <circle cx="270" cy="130" r="18" fill="#fff"/>
+      <circle cx="200" cy="210" r="120" fill="#000"/>
+      <circle cx="165" cy="190" r="15" fill="#fff"/>
+      <circle cx="235" cy="190" r="15" fill="#fff"/>
+      <ellipse cx="200" cy="240" rx="18" ry="12" fill="#fff"/>
+      <path d="M 170 270 Q 200 290 230 270" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+    </svg>`
+  },
+  {
+    name: '点阵图',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#fff"/>
+      ${(() => {let s='';for(let r=0;r<5;r++){for(let c=0;c<5;c++){const cx=60+c*70;const cy=60+r*70;const rad=(r+c)%2===0?28:18;s+=`<circle cx="${cx}" cy="${cy}" r="${rad}" fill="#000"/>`;}}return s;})()}
+    </svg>`
+  }
+];
+
+/* ---------- 彩色卡SVG数据（6张） ---------- */
+const COLOR_CARDS = [
+  {
+    name: '红苹果',
+    color: '#E74C3C',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#FFF5F5"/>
+      <path d="M 200 100 Q 130 100 110 200 Q 110 320 200 340 Q 290 320 290 200 Q 270 100 200 100 Z" fill="#E74C3C"/>
+      <path d="M 200 100 Q 200 80 220 70" fill="none" stroke="#6B4423" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="240" cy="80" rx="30" ry="15" fill="#27AE60" transform="rotate(30 240 80)"/>
+    </svg>`
+  },
+  {
+    name: '黄太阳',
+    color: '#F1C40F',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#FFFDE7"/>
+      ${(() => {let s='';for(let i=0;i<12;i++){const a=i*30;const x1=200+100*Math.cos(a*Math.PI/180);const y1=200+100*Math.sin(a*Math.PI/180);const x2=200+170*Math.cos(a*Math.PI/180);const y2=200+170*Math.sin(a*Math.PI/180);s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#F1C40F" stroke-width="12" stroke-linecap="round"/>`;}return s;})()}
+      <circle cx="200" cy="200" r="90" fill="#F1C40F"/>
+      <circle cx="175" cy="185" r="8" fill="#000"/>
+      <circle cx="225" cy="185" r="8" fill="#000"/>
+      <path d="M 170 220 Q 200 245 230 220" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round"/>
+    </svg>`
+  },
+  {
+    name: '蓝海浪',
+    color: '#3498DB',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#E8F6FD"/>
+      <path d="M 0 200 Q 100 150 200 200 T 400 200 L 400 400 L 0 400 Z" fill="#3498DB"/>
+      <path d="M 0 250 Q 100 200 200 250 T 400 250 L 400 400 L 0 400 Z" fill="#2980B9" opacity="0.6"/>
+      <path d="M 0 300 Q 100 250 200 300 T 400 300 L 400 400 L 0 400 Z" fill="#1ABC9C" opacity="0.4"/>
+    </svg>`
+  },
+  {
+    name: '绿树叶',
+    color: '#27AE60',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#E8F8F0"/>
+      <path d="M 200 60 Q 100 150 120 250 Q 200 350 280 250 Q 300 150 200 60 Z" fill="#27AE60"/>
+      <line x1="200" y1="80" x2="200" y2="320" stroke="#1E8449" stroke-width="4"/>
+      <line x1="200" y1="140" x2="150" y2="180" stroke="#1E8449" stroke-width="3"/>
+      <line x1="200" y1="140" x2="250" y2="180" stroke="#1E8449" stroke-width="3"/>
+      <line x1="200" y1="200" x2="140" y2="230" stroke="#1E8449" stroke-width="3"/>
+      <line x1="200" y1="200" x2="260" y2="230" stroke="#1E8449" stroke-width="3"/>
+    </svg>`
+  },
+  {
+    name: '橙橙子',
+    color: '#E67E22',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#FFF3E0"/>
+      <circle cx="200" cy="220" r="130" fill="#E67E22"/>
+      <circle cx="200" cy="220" r="130" fill="none" stroke="#D35400" stroke-width="3" opacity="0.3"/>
+      <path d="M 195 90 Q 190 70 200 60" fill="none" stroke="#27AE60" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="215" cy="78" rx="20" ry="10" fill="#27AE60" transform="rotate(30 215 78)"/>
+      <circle cx="165" cy="195" r="6" fill="#D35400" opacity="0.4"/>
+      <circle cx="235" cy="210" r="5" fill="#D35400" opacity="0.4"/>
+      <circle cx="190" cy="260" r="5" fill="#D35400" opacity="0.4"/>
+    </svg>`
+  },
+  {
+    name: '紫葡萄',
+    color: '#9B59B6',
+    svg: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#F5EEF8"/>
+      <path d="M 200 80 Q 190 70 200 60" fill="none" stroke="#27AE60" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="220" cy="75" rx="25" ry="12" fill="#27AE60" transform="rotate(30 220 75)"/>
+      <circle cx="160" cy="150" r="30" fill="#9B59B6"/>
+      <circle cx="220" cy="140" r="30" fill="#9B59B6"/>
+      <circle cx="280" cy="155" r="30" fill="#9B59B6"/>
+      <circle cx="180" cy="200" r="30" fill="#8E44AD"/>
+      <circle cx="240" cy="195" r="30" fill="#8E44AD"/>
+      <circle cx="210" cy="250" r="30" fill="#7D3C98"/>
+    </svg>`
+  }
+];
+
+/* ---------- 早教启蒙：0-12月发育特点（按月龄索引） ---------- */
+const DEV_SUMMARY_BY_AGE = {
+  0: [
+    { label: '👁️ 视觉', text: '出生即能看清20-25cm距离，对高对比度黑白图案敏感，最喜欢看人脸' },
+    { label: '👂 听觉', text: '听力已发育完善，能辨认妈妈声音，会被突然的大声响吓到' },
+    { label: '💪 大动作', text: '俯卧时能短暂抬头，四肢呈屈曲状态，有踏步反射和抓握反射' },
+    { label: '✋ 精细动作', text: '手呈握拳状，触碰手心会自动抓握（抓握反射），无法主动松手' },
+    { label: '🗣️ 语言', text: '以哭声表达需求，能发出细小的喉音，对柔和的声音有安抚反应' },
+    { label: '🧠 认知', text: '天生偏好人脸，能模仿简单的面部表情（吐舌、张嘴），有记忆能力' }
+  ],
+  1: [
+    { label: '👁️ 视觉', text: '目光能短暂跟随移动物体，开始关注黑白对比强烈的图案，偏好人脸' },
+    { label: '👂 听觉', text: '对声音有明显反应，听到熟悉的声音会安静，能辨别声音方向' },
+    { label: '💪 大动作', text: '俯卧时能抬头片刻，下巴离床，头部偶尔还能抬起转动' },
+    { label: '✋ 精细动作', text: '手仍多呈握拳状，但开始有短暂的松开，会触碰物体' },
+    { label: '🗣️ 语言', text: '能发出"a""o""e"等元音，除了哭以外开始有其他发声' },
+    { label: '🧠 认知', text: '能注视眼前的人脸和物体，开始建立日夜节律，对喂养姿势有预期' }
+  ],
+  2: [
+    { label: '👁️ 视觉', text: '能平滑追踪移动的物体180度，开始注意色彩鲜艳的玩具，喜欢看手' },
+    { label: '👂 听觉', text: '能辨别声音来源方向，听到声音会转头寻找，喜欢有节奏的声音' },
+    { label: '💪 大动作', text: '俯卧能抬头45度并保持片刻，胸部可离床，头部控制明显改善' },
+    { label: '✋ 精细动作', text: '手开始松开，偶尔会主动挥动双臂，能短暂触碰悬挂玩具' },
+    { label: '🗣️ 语言', text: '发出"aaa""ooo"等咿呀声，开始出现社交性微笑' },
+    { label: '🧠 认知', text: '能认出熟悉的人，对不同需求有不同哭声，开始建立日常规律认知' }
+  ],
+  3: [
+    { label: '👁️ 视觉', text: '能看清30-50cm距离，开始分辨红绿色，喜欢彩色玩具和人脸' },
+    { label: '👂 听觉', text: '听力接近成人水平，能精确辨别声音方向，喜欢温和有节奏的声音' },
+    { label: '💪 大动作', text: '俯卧能抬头90度并用前臂支撑，头部控制稳定，开始出现翻身迹象' },
+    { label: '✋ 精细动作', text: '能主动挥打玩具，开始尝试抓握，手能送到嘴边' },
+    { label: '🗣️ 语言', text: '咿呀声更丰富，能发出"agu""ge"等辅音，会大声笑' },
+    { label: '🧠 认知', text: '开始注意自己的手，能追踪掉落的物体，对镜子感兴趣' }
+  ],
+  4: [
+    { label: '👁️ 视觉', text: '能看清20-30cm距离，开始分辨红绿色，能平滑追踪移动物体，最喜欢看人脸' },
+    { label: '👂 听觉', text: '听力接近成人水平，能辨别声音方向，喜欢温和有节奏的声音' },
+    { label: '💪 大动作', text: '俯卧时能用前臂支撑抬起上身，头部控制越来越稳，开始出现翻身迹象' },
+    { label: '✋ 精细动作', text: '会主动伸手抓握玩具，能将手送到嘴边，开始尝试双手互握' },
+    { label: '🗣️ 语言', text: '能发出"ooo""aahh"等元音，会回应大人说话，开始"对话"' },
+    { label: '🧠 认知', text: '饿了看到奶瓶会张嘴，会饶有兴趣地看自己的手，开始理解简单因果关系' }
+  ],
+  5: [
+    { label: '👁️ 视觉', text: '能看清较远距离的物体，开始分辨更多颜色，喜欢复杂的图案' },
+    { label: '👂 听觉', text: '能精确定位声源，开始对自己的名字有反应，喜欢音乐' },
+    { label: '💪 大动作', text: '能从俯卧翻到仰卧，拉着坐时头不后仰，能独坐片刻' },
+    { label: '✋ 精细动作', text: '能主动伸手抓握玩具并握紧，开始双手传递物品，能抓脚' },
+    { label: '🗣️ 语言', text: '能发出更多辅音组合，开始理解"不"的语气，会发出不同情绪的声音' },
+    { label: '🧠 认知', text: '开始理解部分因果关系（摇晃玩具会响），对躲猫猫感兴趣' }
+  ],
+  6: [
+    { label: '👁️ 视觉', text: '视力发展接近成人，能分辨所有颜色，开始有深度感知' },
+    { label: '👂 听觉', text: '能听到细微声音，开始理解一些常用词的语气，喜欢模仿声音' },
+    { label: '💪 大动作', text: '能独坐片刻，会翻身翻滚，俯卧时能用手掌支撑，开始有爬行意愿' },
+    { label: '✋ 精细动作', text: '能用整只手抓握（尺骨抓握），开始用手指拨弄小物体，能双手传递' },
+    { label: '🗣️ 语言', text: '开始发出"ba""ma""da"等辅音，能理解"不行"，咿呀声有高低起伏' },
+    { label: '🧠 认知', text: '开始理解物体恒存性（看不到的东西还在），喜欢敲打和扔东西' }
+  ],
+  7: [
+    { label: '👁️ 视觉', text: '视力清晰，能追踪快速移动的物体，开始对细小物体感兴趣' },
+    { label: '👂 听觉', text: '能理解更多语调含义，对音乐有节奏反应，开始模仿声音' },
+    { label: '💪 大动作', text: '能独坐稳，会前倾够物，开始腹爬或倒退爬行，能翻身翻滚' },
+    { label: '✋ 精细动作', text: '开始用拇指和食指侧捏物体（剪式抓握），能将玩具从一手换到另一手' },
+    { label: '🗣️ 语言', text: '能发出连续音节"baba""mama"（无意识），理解"不行""拜拜"' },
+    { label: '🧠 认知', text: '开始理解物体永久性，会寻找部分隐藏的物体，喜欢因果玩具' }
+  ],
+  8: [
+    { label: '👁️ 视觉', text: '视力接近成人水平，能判断距离，喜欢观察细小物体' },
+    { label: '👂 听觉', text: '能理解简单指令语气，对名字反应灵敏，喜欢有韵律的儿歌' },
+    { label: '💪 大动作', text: '能独坐很稳并自由转身，爬行熟练，能扶着家具站立' },
+    { label: '✋ 精细动作', text: '开始发展拇食指对捏（钳形抓握），能用食指指物，喜欢戳按' },
+    { label: '🗣️ 语言', text: '能发出更多音节组合，开始理解"给我""过来"，会用声音吸引注意' },
+    { label: '🧠 认知', text: '理解物体恒存性，会主动寻找完全隐藏的物体，开始有目的性动作' }
+  ],
+  9: [
+    { label: '👁️ 视觉', text: '视力完全发育，能看清远处细节，喜欢看图画书' },
+    { label: '👂 听觉', text: '能理解更多日常用语，开始对音乐有偏好，会跟着节奏晃动' },
+    { label: '💪 大动作', text: '爬行灵活，能从坐位到站位，扶着走几步，能蹲下捡物' },
+    { label: '✋ 精细动作', text: '钳形抓握成熟，能用拇指食指精确捏起小物，喜欢扔东西' },
+    { label: '🗣️ 语言', text: '能理解"不""再见""抱抱"，开始有意识地叫"妈妈""爸爸"' },
+    { label: '🧠 认知', text: '开始模仿大人的动作，理解简单因果，喜欢容器里取放物品' }
+  ],
+  10: [
+    { label: '👁️ 视觉', text: '能识别熟悉的图片和物体，开始理解图画代表实物' },
+    { label: '👂 听觉', text: '能理解简单句子，对自己的名字反应灵敏，喜欢被表扬' },
+    { label: '💪 大动作', text: '能扶着家具侧走，能从站位坐下，开始尝试独站片刻' },
+    { label: '✋ 精细动作', text: '能将物品放入容器，喜欢把东西拿出来又放进去，会翻书页' },
+    { label: '🗣️ 语言', text: '能说出1-2个有意义的词，理解"给我""不要"，会用摇头表示不' },
+    { label: '🧠 认知', text: '开始理解"里面""外面"，喜欢模仿大人动作，有明确偏好' }
+  ],
+  11: [
+    { label: '👁️ 视觉', text: '能识别更多图片，开始关注图画书中的细节' },
+    { label: '👂 听觉', text: '能理解简单指令如"过来""坐下"，喜欢听故事' },
+    { label: '💪 大动作', text: '能独站较稳，扶着能走，部分宝宝开始独立迈步' },
+    { label: '✋ 精细动作', text: '能精确捏起小物，喜欢涂鸦，能把盖子盖上' },
+    { label: '🗣️ 语言', text: '能说出2-3个有意义词，理解很多日常用语，会用手指指物' },
+    { label: '🧠 认知', text: '开始理解因果关系，会故意扔东西看结果，喜欢分类游戏' }
+  ],
+  12: [
+    { label: '👁️ 视觉', text: '视力发育完善，能识别熟悉的人和物，喜欢看彩色图画书' },
+    { label: '👂 听觉', text: '能理解简单短句和指令，对音乐有明显偏好，会跟着节奏动' },
+    { label: '💪 大动作', text: '多数宝宝能独走几步，能扶着上下楼梯（爬行），蹲下能站起' },
+    { label: '✋ 精细动作', text: '能用拇指食指精确捏取，会翻厚纸板书页，喜欢用笔涂鸦' },
+    { label: '🗣️ 语言', text: '能说3-5个有意义词，理解简单指令，会挥手再见' },
+    { label: '🧠 认知', text: '开始用物体做工具，理解简单分类，会模仿日常活动（喂娃娃）' }
+  ]
+};
+
+/* ---------- 早教启蒙：四大领域训练项目 ---------- */
+/* ---------- 早教启蒙：四大领域训练项目（按月龄分组） ---------- */
+const LEARN_DOMAINS_BY_AGE = {
+  0: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'抬头·屈曲·反射', summary:'0月龄重点：俯卧抬头片刻、四肢活动',
+      trainings:[
+        {name:'俯卧抬头初体验', steps:['在清醒时让宝宝趴在稍硬的平面上','在宝宝前方放一个黑白卡片或人脸','每次1-2分钟，一天2-3次','宝宝哭闹或疲倦立即停止'], tips:'新生儿俯卧时间从短开始，逐渐增加。必须在清醒时进行。'},
+        {name:'四肢自由活动', steps:['让宝宝仰卧在开阔安全的空间','穿着宽松衣物，不要包裹太紧','让宝宝自由踢腿挥臂','可以轻轻抚触四肢'], tips:'新生儿有天然屈曲姿势，不需要强行拉伸，让四肢自由活动即可。'},
+        {name:'被动蹬腿', steps:['让宝宝仰卧','轻轻握住宝宝的小腿','做温和的蹬自行车动作','每条腿8-10次'], tips:'动作非常轻柔，像在跟宝宝玩耍，不是在锻炼。'}
+      ],
+      milestones:['俯卧时能短暂抬头片刻','四肢能自由活动','有踏步反射']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'抓握反射·触碰', summary:'0月龄重点：抓握反射、手部触觉刺激',
+      trainings:[
+        {name:'抓握反射互动', steps:['将手指放入宝宝手心','宝宝会自动握紧','轻轻向上拉，让宝宝握住片刻','左右手交替'], tips:'新生儿抓握是反射性的，不是主动抓握，这个互动让宝宝感受手的握紧。'},
+        {name:'手部触觉刺激', steps:['在宝宝清醒时','用不同材质轻触宝宝手背和手心（丝绸、棉布）','观察宝宝的反应','每次1-2分钟'], tips:'新生儿手多呈握拳状，触觉刺激帮助宝宝感知手的存在。'}
+      ],
+      milestones:['有抓握反射（触碰手心自动握紧）','手多呈握拳状']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'哭声·喉音·回应', summary:'0月龄重点：哭声沟通、声音安抚、语言输入',
+      trainings:[
+        {name:'及时回应哭声', steps:['宝宝哭时及时回应','辨别不同哭声含义（饿、尿、困、不舒服）','一边回应一边说"妈妈来了"','让宝宝感受声音的安抚'], tips:'及时回应哭声不会宠坏宝宝，反而建立安全感。'},
+        {name:'日常温柔絮语', steps:['在喂奶、换尿布、洗澡时','用温柔缓慢的语调跟宝宝说话','"宝宝饿了，妈妈在喂你"','经常叫宝宝的小名'], tips:'即使宝宝听不懂，语言输入对大脑发育至关重要。'},
+        {name:'模仿声音回应', steps:['当宝宝发出喉音时','模仿宝宝的声音回应','停顿等待宝宝的反应','像对话一样轮流'], tips:'这种回应式互动从出生就可以开始。'}
+      ],
+      milestones:['用哭声表达不同需求','能发出细小喉音','对柔和声音有安抚反应']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'人脸·模仿·节律', summary:'0月龄重点：人脸偏好、面部模仿、日夜节律',
+      trainings:[
+        {name:'人脸互动', steps:['抱宝宝距离20-25cm','让宝宝看你的脸','缓慢做表情（微笑、张嘴、吐舌）','观察宝宝是否模仿'], tips:'新生儿天生偏好人脸，这是最早的认知互动。20-25cm是最佳距离。'},
+        {name:'面部模仿', steps:['在宝宝清醒时','面对宝宝吐舌','等几秒看宝宝是否模仿','换张嘴、嘟嘴等动作'], tips:'新生儿能模仿简单的面部动作，这是认知发展的惊人能力。'},
+        {name:'昼夜节律建立', steps:['白天保持明亮和正常声音','夜间喂奶时灯光昏暗','白天多互动，夜间安静','建立固定的睡前仪式'], tips:'从出生开始帮助宝宝区分白天黑夜，有助于尽早建立昼夜节律。'}
+      ],
+      milestones:['偏好人脸图案','能模仿简单面部表情','对喂养姿势有预期']
+    }
+  ],
+
+  1: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'抬头·颈部力量', summary:'1月龄重点：俯卧抬头、颈部力量增强',
+      trainings:[
+        {name:'俯卧抬头练习', steps:['清醒时让宝宝趴在爬行垫上','在前方25cm处放黑白卡片','鼓励宝宝抬头看','每次2-3分钟，一天3-4次'], tips:'抬头时间逐渐增加，宝宝疲倦就休息，不强迫。'},
+        {name:'竖抱抬头', steps:['竖抱宝宝时让头靠在肩上','手托住宝宝头颈','让宝宝练习短暂竖头','从几秒开始逐渐延长'], tips:'竖抱时一定要托住头颈，1个月宝宝头颈力量还很弱。'}
+      ],
+      milestones:['俯卧时能抬头片刻（下巴离床）','竖抱时头能短暂竖直']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'松手·触碰', summary:'1月龄重点：手开始松开、触碰物体',
+      trainings:[
+        {name:'手部松开练习', steps:['宝宝仰卧时','轻轻按摩宝宝手背帮助松开','让手指自然伸展','不要强行掰开'], tips:'1个月宝宝手开始偶尔松开，按摩有助于手部放松。'},
+        {name:'触碰悬挂玩具', steps:['在宝宝上方悬挂彩色玩具','高度让宝宝的手能碰到','宝宝挥动手臂时偶尔碰到','给予语言鼓励'], tips:'不是抓握，是触碰。让宝宝感受手碰到物体的感觉。'}
+      ],
+      milestones:['手开始偶尔松开','能短暂触碰悬挂玩具']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'元音·社交微笑', summary:'1月龄重点：发出元音、开始社交微笑',
+      trainings:[
+        {name:'元音对话', steps:['宝宝发出"a""o"声时','看着宝宝模仿回应','停顿等待','像对话一样轮流'], tips:'1个月宝宝开始发出除哭以外的声音，及时回应鼓励发声。'},
+        {name:'面对面微笑', steps:['抱宝宝距离20-25cm','对宝宝微笑','用夸张的表情吸引注意','等宝宝微笑回应'], tips:'社交微笑通常在6-8周出现，多跟宝宝面对面互动。'}
+      ],
+      milestones:['能发出"a""o""e"等元音','开始出现社交性微笑']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'追视·人脸·声音', summary:'1月龄重点：目光追视、人脸识别',
+      trainings:[
+        {name:'追视练习', steps:['在宝宝眼前20-25cm展示黑白卡','等宝宝注视后缓慢移动卡片','从左到右移动15-20cm','观察宝宝目光是否跟随'], tips:'移动要缓慢，宝宝目光跟丢了就从中间重新开始。'},
+        {name:'声音定位', steps:['在宝宝头侧30cm处发出柔和声音','摇铃或轻声说话','观察宝宝是否转头','换另一侧继续'], tips:'1个月宝宝对声音有反应，但还不能精确定位声源。'}
+      ],
+      milestones:['目光能短暂跟随移动物体','对人脸有明显偏好','对声音有反应']
+    }
+  ],
+
+  2: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'抬头45°·胸部离床', summary:'2月龄重点：俯卧抬头45度、头部控制改善',
+      trainings:[
+        {name:'俯卧抬头45度', steps:['趴在爬行垫上','前方25cm处放彩色玩具','鼓励抬头看玩具','每次3-5分钟，一天3-4次'], tips:'2个月宝宝应能抬头45度并保持片刻，颈部力量明显增强。'},
+        {name:'上肢展开练习', steps:['趴着时引导宝宝双臂向前放','用玩具吸引抬头','鼓励用前臂支撑','帮助宝宝感受支撑的感觉'], tips:'从屈臂到展臂是俯卧发展的过程，不要着急。'}
+      ],
+      milestones:['俯卧能抬头45度并保持片刻','胸部可短暂离床','头部控制明显改善']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'挥臂·触碰', summary:'2月龄重点：主动挥臂、触碰玩具',
+      trainings:[
+        {name:'主动挥臂', steps:['在宝宝胸前悬挂彩色玩具','高度让手能碰到','鼓励宝宝挥动手臂','碰到时给予声音和表情鼓励'], tips:'2个月宝宝开始主动挥动双臂，这是主动触碰的开始。'},
+        {name:'手部打开', steps:['宝宝仰卧时','按摩手背帮助打开手指','将轻便摇铃放在手中','宝宝可能短暂握住'], tips:'2个月手开始更多打开，但仍以反射性抓握为主。'}
+      ],
+      milestones:['能主动挥动双臂','能短暂触碰悬挂玩具','手开始更多打开']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'咿呀·社交微笑', summary:'2月龄重点：咿呀发声、社交微笑出现',
+      trainings:[
+        {name:'咿呀对话', steps:['宝宝发出"aaa""ooo"时','看着宝宝眼睛模仿','停顿2-3秒等回应','反复交流'], tips:'2个月是咿呀发声的关键期，多回应多互动。'},
+        {name:'社交微笑互动', steps:['面对宝宝距离20-30cm','对宝宝微笑说话','等宝宝微笑回应','回应时说"宝宝笑了！"'], tips:'社交微笑通常在2个月出现，这是情感交流的里程碑。'}
+      ],
+      milestones:['发出"aaa""ooo"等咿呀声','出现社交性微笑','能大声笑']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'追视180°·认人', summary:'2月龄重点：追视180度、识别熟悉的人',
+      trainings:[
+        {name:'追视180度', steps:['在宝宝眼前25cm展示玩具','从一侧缓慢移到另一侧','移动180度弧线','让宝宝目光全程跟随'], tips:'2个月宝宝应能追踪移动物体180度。速度要慢。'},
+        {name:'认人游戏', steps:['让不同家人跟宝宝互动','观察宝宝对熟悉人的反应','对妈妈的声音和脸有特别反应','说"妈妈在这里"'], tips:'2个月宝宝开始能识别熟悉的人，尤其对妈妈有特别偏好。'}
+      ],
+      milestones:['目光能追踪移动的物体180度','能认出熟悉的人','对不同需求有不同哭声']
+    }
+  ],
+
+  3: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'抬头90°·前臂支撑', summary:'3月龄重点：俯卧抬头90度、前臂支撑',
+      trainings:[
+        {name:'俯卧抬头90度', steps:['趴在爬行垫上','前方30cm处放彩色玩具','鼓励抬头到90度','用前臂支撑上身','每次3-5分钟'], tips:'3个月宝宝应能抬头90度并用前臂支撑，头部控制稳定。'},
+        {name:'翻身准备', steps:['仰卧时用玩具引导侧身','轻轻推臀部帮助侧翻','让宝宝感受翻身的动作','左右两侧都练'], tips:'从仰卧到侧卧是翻身的第一步，不着急完全翻身。'},
+        {name:'蹬腿训练', steps:['仰卧时在脚底放软玩具','宝宝蹬腿碰到时鼓励','左右交替','锻炼下肢力量'], tips:'蹬腿是翻身和爬行的基础力量。'}
+      ],
+      milestones:['俯卧能抬头90度','能用前臂支撑上身','头部控制稳定','开始出现翻身迹象']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'挥打·抓握·手到口', summary:'3月龄重点：主动挥打玩具、开始抓握',
+      trainings:[
+        {name:'主动挥打', steps:['在宝宝胸前悬挂玩具','鼓励宝宝挥打','碰到时给予鼓励','使用发声玩具增加兴趣'], tips:'3个月宝宝能主动挥打面前的玩具，这是手眼协调的开始。'},
+        {name:'抓握练习', steps:['将摇铃轻触宝宝手背','引发宝宝抓握','轻轻拉摇铃让宝宝握紧','左右手交替'], tips:'从反射性抓握向主动抓握过渡。'},
+        {name:'手到口引导', steps:['将安全牙胶放入宝宝手','引导手到嘴边','让宝宝体验咬嚼','帮助宝宝发现手能送到嘴里'], tips:'手到口是重要的自我安抚和探索能力。'}
+      ],
+      milestones:['能主动挥打面前的玩具','开始尝试抓握','能将手送到嘴边']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'辅音·大笑', summary:'3月龄重点：发出辅音、大声笑',
+      trainings:[
+        {name:'辅音对话', steps:['宝宝发出"agu""ge"等辅音时','模仿并回应','增加辅音种类','像对话一样轮流'], tips:'3个月开始出现辅音，语言能力快速发展。'},
+        {name:'逗笑游戏', steps:['面对宝宝做有趣表情','用夸张的声音逗宝宝','挠痒痒让宝宝大笑','回应宝宝的笑声'], tips:'3个月宝宝能大声笑，笑声是最美妙的交流。'}
+      ],
+      milestones:['发出"agu""ge"等辅音','能大声笑','对说话有声音回应']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'看手·追视·镜子', summary:'3月龄重点：发现自己的手、对镜子感兴趣',
+      trainings:[
+        {name:'发现小手', steps:['让宝宝仰卧','引导宝宝看自己的手','"看，这是宝宝的小手"','帮助宝宝双手在胸前相握'], tips:'3个月宝宝开始发现自己手的存在，这是自我认知的起点。'},
+        {name:'镜子初体验', steps:['抱宝宝面对安全镜子','指着镜中的影像','"看，这是宝宝"','做表情让宝宝观察镜中变化'], tips:'宝宝还不能认出自己，但喜欢看镜中的人脸。'},
+        {name:'追视物体', steps:['用彩色玩具在眼前30cm展示','缓慢从左到右移动','让宝宝目光跟随','可上下移动增加难度'], tips:'3个月追视能力增强，可以追踪更复杂轨迹。'}
+      ],
+      milestones:['开始注意自己的手','能追踪移动的物体','对镜子感兴趣']
+    }
+  ],
+
+  4: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'抬头·翻身·蹬腿', summary:'4月龄重点：俯卧抬头、翻身准备、头部控制',
+      trainings:[
+        {name:'俯卧抬头练习', steps:['让宝宝趴在稍硬的平面上（如爬行垫）','在宝宝前方20-30cm处放一个彩色玩具','用玩具吸引宝宝抬头看，鼓励用前臂支撑','每次练习1-2分钟，逐渐延长时间'], tips:'必须在宝宝清醒时进行，全程看护。如果宝宝哭闹或疲倦立即停止。'},
+        {name:'翻身引导', steps:['让宝宝仰卧在平坦的垫子上','用一个有趣的玩具在宝宝侧面摇晃吸引注意','当宝宝试图侧身够玩具时，轻轻推一下臀部辅助翻身','成功后给予微笑和语言鼓励'], tips:'翻身是从仰卧到侧卧开始，不要着急，每个宝宝节奏不同。'},
+        {name:'蹬腿训练', steps:['让宝宝仰卧','在宝宝脚底放一个可踢动的软玩具或发声玩具','当宝宝蹬腿碰到玩具时，给予声音或表情反馈','左右交替放玩具，锻炼双侧腿部'], tips:'这个练习锻炼下肢力量，为以后的爬行和站立打基础。'},
+        {name:'拉坐练习', steps:['让宝宝仰卧','家长握住宝宝的双手','缓慢将宝宝从仰卧拉到坐位','观察宝宝头部是否能跟随身体抬起（头颈控制）'], tips:'动作要非常缓慢轻柔，如果头部明显后仰说明头颈控制还不够，多练习俯卧抬头。'}
+      ],
+      milestones:['能稳定控制头部不摇晃','俯卧时能用前臂支撑上身','开始尝试从仰卧翻到侧卧']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'抓握·手眼协调', summary:'4月龄重点：主动抓握、手眼协调、手到口',
+      trainings:[
+        {name:'主动抓握', steps:['准备摇铃或牙胶玩具','将玩具放在宝宝手边，距离手掌5-10cm','鼓励宝宝主动伸手去抓','宝宝抓住后，轻轻拉一下让宝宝体验握紧的感觉'], tips:'选择轻便、易于抓握的玩具，颜色鲜艳更容易引起注意。'},
+        {name:'双手互握', steps:['让宝宝仰卧或半坐','引导宝宝的两只手在胸前相遇','帮助宝宝双手交叉相握','可以唱儿歌配合节奏做双手开合动作'], tips:'双手互握是中线活动，有助于大脑左右半球协调。'},
+        {name:'触觉探索', steps:['准备不同材质的物品：纱布、毛绒、丝绸、硅胶','让宝宝依次触摸每种材质','一边触摸一边描述："这是软软的纱布"','观察宝宝对不同材质的反应'], tips:'确保所有物品安全可啃咬，这个月龄宝宝会把一切都放进嘴里。'},
+        {name:'手到口引导', steps:['准备安全的牙胶','将牙胶放入宝宝手中','轻轻引导宝宝的手（拿着牙胶）送到嘴边','让宝宝体验咬嚼的感觉'], tips:'手到口是重要的自我安抚和探索能力，鼓励但不要强迫。'}
+      ],
+      milestones:['能握住放入手中的玩具','会用手臂挥打玩具','能将手送到嘴边']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'咿呀·对话·儿歌', summary:'4月龄重点：咿呀发声、回应式对话、语言输入',
+      trainings:[
+        {name:'回应式对话', steps:['在宝宝发出"ooo""aahh"声音时，看着宝宝的眼睛','模仿宝宝发出的声音','停顿等待，给宝宝回应的机会','就像真正的"对话"一样轮流发声'], tips:'这种回应式互动是语言发展的基础，让宝宝感受到"交流"的乐趣。'},
+        {name:'日常描述', steps:['在日常护理中（换尿布、喂奶、洗澡），用丰富准确的语言描述','例如："妈妈在给宝宝换尿布，这是干净的尿布，白色的，软软的"','语速放慢，语调夸张，多用叠词','经常叫宝宝的名字'], tips:'不要觉得宝宝听不懂就不说，语言输入的量和质量直接影响语言发育。'},
+        {name:'儿歌律动', steps:['选择简单节奏的儿歌，如《小星星》《拍手歌》','一边唱一边配合肢体动作','唱到关键句时做夸张的表情和动作','反复唱同一首，宝宝会逐渐熟悉'], tips:'家长的声音是最好的音乐，不需要播放录音，面对面唱效果最好。'},
+        {name:'叫名字认知', steps:['在各种场景中经常呼唤宝宝的小名','叫名字时看着宝宝的眼睛','观察宝宝是否对名字有反应（转头、看人）','配合微笑和温柔语调'], tips:'名字认知是社交和语言发展的重要里程碑，4个月开始建立。'}
+      ],
+      milestones:['能发出"oooo""aahh"等元音','对说话有声音回应','听到声音会转头寻找']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'因果·物体恒存', summary:'4月龄重点：因果关系萌芽、物体恒存性',
+      trainings:[
+        {name:'因果体验', steps:['准备一个按压发声的玩具','把着宝宝的手按压玩具，让玩具发声','配合惊喜的表情说"哇，响了！"','多次重复，观察宝宝是否开始主动按压'], tips:'因果理解是认知发展的核心，让宝宝体验"我做了动作→产生了结果"。'},
+        {name:'躲猫猫', steps:['家长用手遮住自己的脸','说"宝宝，妈妈在哪呢？"','快速移开手露出脸，说"喵~在这里！"','配合夸张开心的表情'], tips:'躲猫猫是经典婴儿游戏，帮助宝宝理解"看不到不等于不存在"（物体恒存性）。'},
+        {name:'照镜子', steps:['抱着宝宝面对安全的镜子','指着镜中的影像说"看，这是宝宝"','做各种表情，让宝宝观察镜中的变化','指着镜子中的五官一一描述'], tips:'4个月的宝宝还不能认出镜中的自己，但非常喜欢看人脸，镜子是很好的视觉刺激。'},
+        {name:'追视物体', steps:['准备一个色彩鲜艳的玩具','在宝宝眼前20-30cm处展示','缓慢将玩具从一侧移到另一侧','让宝宝的目光追随玩具移动'], tips:'移动速度要慢（约5cm/秒），如果宝宝目光跟丢了，重新从中间开始。'}
+      ],
+      milestones:['饿了看到奶瓶会张嘴','会饶有兴趣地看自己的手']
+    }
+  ],
+
+  5: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'翻身·独坐片刻', summary:'5月龄重点：翻身翻滚、独坐片刻、拉坐头不后仰',
+      trainings:[
+        {name:'翻身练习', steps:['让宝宝仰卧','用玩具引导侧身','轻轻推臀部和肩膀辅助翻成俯卧','鼓励宝宝翻滚'], tips:'5个月宝宝能从仰卧翻到俯卧，多给机会练习。'},
+        {name:'独坐练习', steps:['让宝宝坐在地上，用枕头围护','在前方放玩具吸引注意','开始时用手支撑身体','逐渐减少支撑'], tips:'5个月能独坐片刻，但还不稳，一定要在安全的环境下。'},
+        {name:'拉坐头控', steps:['仰卧时握住双手缓慢拉起','观察头部是否跟随不后仰','到坐位后保持片刻','再缓慢放下'], tips:'5个月拉坐时头不再后仰，头颈控制良好。'}
+      ],
+      milestones:['能从俯卧翻到仰卧','拉着坐时头不后仰','能独坐片刻（用手支撑）']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'抓握·双手传递', summary:'5月龄重点：主动抓握、双手传递、抓脚',
+      trainings:[
+        {name:'主动抓握', steps:['将玩具放在宝宝面前','鼓励宝宝伸手去抓','提供各种形状的玩具','左右手都练'], tips:'5个月抓握更有目的性，能准确抓到目标。'},
+        {name:'双手传递', steps:['给宝宝一个玩具','引导宝宝从一手换到另一手','"换到另一只手"','反复练习'], tips:'双手传递需要中线协调，是精细动作的重要进步。'},
+        {name:'抓脚练习', steps:['让宝宝仰卧','引导宝宝抓自己的脚','"抓小脚丫"','可以穿上响袜增加兴趣'], tips:'5个月宝宝能抓到脚，这是核心力量和柔韧性的体现。'}
+      ],
+      milestones:['能主动伸手抓握并握紧','开始双手传递物品','能抓到自己的脚']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'辅音组合·理解语气', summary:'5月龄重点：更多辅音组合、理解语气',
+      trainings:[
+        {name:'辅音扩展', steps:['模仿宝宝的辅音声','增加"ba""ma""da"等音','鼓励宝宝模仿','像对话一样轮流'], tips:'5个月辅音种类增多，是语言爆发的前期。'},
+        {name:'语气理解', steps:['用开心的语气说"真棒"','用严肃的语气说"不行"','观察宝宝的反应','让宝宝感受不同语气'], tips:'5个月宝宝开始理解语调含义。'},
+        {name:'声音因果', steps:['给宝宝发声玩具','让宝宝自己弄出声音','"哇，宝宝让玩具响了"','体验因果关系'], tips:'声音因果是认知和语言的交叉发展。'}
+      ],
+      milestones:['能发出更多辅音组合','开始理解"不"的语气','会发出不同情绪的声音']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'因果·物体恒存', summary:'5月龄重点：因果关系理解、物体恒存性发展',
+      trainings:[
+        {name:'因果玩具', steps:['提供按压、摇晃发声的玩具','让宝宝自己探索','"按下去就亮了"','多种因果玩具轮换'], tips:'5个月宝宝开始理解简单因果关系。'},
+        {name:'部分隐藏', steps:['把玩具用布盖住一部分','"玩具在哪呢？"','鼓励宝宝寻找','露出后说"找到了"'], tips:'5个月开始理解物体即使部分被遮住也还在。'},
+        {name:'敲打探索', steps:['给宝宝两个玩具','鼓励宝宝对敲','"咚咚咚，真好听"','换不同材质的玩具'], tips:'敲打是探索物体属性的认知行为。'}
+      ],
+      milestones:['开始理解因果关系（摇晃玩具会响）','对躲猫猫感兴趣','能寻找部分隐藏的物体']
+    }
+  ],
+
+  6: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'独坐·翻身·爬行意愿', summary:'6月龄重点：独坐、翻身翻滚、开始有爬行意愿',
+      trainings:[
+        {name:'独坐练习', steps:['让宝宝坐在安全垫上','前方放玩具吸引','从用手支撑到不用手','每次逐渐延长时间'], tips:'6个月能独坐片刻，还不稳，周围要放枕头保护。'},
+        {name:'翻身翻滚', steps:['在垫子上放一圈玩具','引导宝宝翻滚去够','从仰卧翻到俯卧再翻回','鼓励连续翻滚'], tips:'6个月翻身已经很熟练，翻滚是很好的大运动练习。'},
+        {name:'爬行准备', steps:['趴着时在前方放玩具','用手掌抵住宝宝脚底','让宝宝有蹬腿向前的感觉','"去拿玩具"'], tips:'6个月开始有爬行意愿，但还不会协调前进。'}
+      ],
+      milestones:['能独坐片刻','翻身熟练','俯卧时能用手掌支撑','开始有爬行意愿']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'尺骨抓握·双手传递', summary:'6月龄重点：尺骨抓握、手指拨弄、双手传递',
+      trainings:[
+        {name:'尺骨抓握', steps:['提供各种大小的玩具','让宝宝用整只手抓握','从大玩具到小玩具过渡','观察抓握方式'], tips:'6个月用尺骨抓握（手指对手掌），还不是拇指食指对捏。'},
+        {name:'手指拨弄', steps:['给宝宝有小零件的玩具（如活动板）','让宝宝用手指拨弄','"转一转，推一推"','锻炼手指灵活性'], tips:'手指拨弄是精细动作发展的重要一步。'},
+        {name:'双手传递', steps:['给宝宝一个玩具','"换到另一只手"','引导宝宝传递','反复练习'], tips:'6个月双手传递更熟练，这是中线活动。'}
+      ],
+      milestones:['能用整只手抓握（尺骨抓握）','开始用手指拨弄小物体','能双手传递物品']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'辅音·理解词义', summary:'6月龄重点：发出"ba""ma"等辅音、理解"不行"',
+      trainings:[
+        {name:'辅音练习', steps:['模仿宝宝的"ba""ma""da"声','鼓励宝宝重复','配合手势如摆手"拜拜"','像对话一样交流'], tips:'6个月开始发出辅音+元音组合，但仍无意识。'},
+        {name:'理解"不行"', steps:['当宝宝做不该做的事时','用严肃语气说"不行"','配合表情和手势','让宝宝理解禁止含义'], tips:'6个月开始理解"不行"的语气，但不要太频繁使用。'},
+        {name:'声音高低', steps:['跟宝宝玩声音高低的对话','有时高音有时低音','让宝宝模仿','"宝宝也能发高音吗"'], tips:'声音高低变化丰富语言表达，也是听觉训练。'}
+      ],
+      milestones:['开始发出"ba""ma""da"等辅音','能理解"不行"','咿呀声有高低起伏']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'物体恒存·敲打扔', summary:'6月龄重点：物体恒存性、敲打和扔东西',
+      trainings:[
+        {name:'完全隐藏', steps:['当着宝宝的面把玩具完全藏在布下','"玩具去哪了？"','鼓励宝宝掀开布找','找到后大力表扬'], tips:'6个月开始理解物体恒存性，能找完全隐藏的物体。'},
+        {name:'敲打游戏', steps:['给宝宝两块积木','鼓励对敲','"咚咚咚"','换不同材质敲'], tips:'敲打是探索物体属性的方式。'},
+        {name:'扔东西', steps:['给宝宝玩具','宝宝会故意扔掉','捡起来再给宝宝','"又扔了！"'], tips:'扔东西是理解重力和因果关系的认知行为，不是捣乱。'}
+      ],
+      milestones:['开始理解物体恒存性','喜欢敲打和扔东西','能寻找完全隐藏的物体']
+    }
+  ],
+
+  7: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'独坐稳·爬行·扶站', summary:'7月龄重点：独坐很稳、开始爬行、扶站',
+      trainings:[
+        {name:'独坐转身', steps:['让宝宝坐着','在身后和侧面放玩具','鼓励宝宝转身去够','练习坐位平衡'], tips:'7个月独坐很稳，可以自由转身够物。'},
+        {name:'爬行练习', steps:['趴着时在前方放玩具','用手掌抵住脚底给支撑','鼓励宝宝向前爬','"去拿玩具"'], tips:'7个月开始腹爬或倒退爬行，多给机会练习。'},
+        {name:'扶站体验', steps:['在沙发或矮桌旁','让宝宝扶着站起来','"看，宝宝站起来了"','短时间即可'], tips:'7个月可能开始扶着家具站立，注意安全。'}
+      ],
+      milestones:['能独坐很稳并自由转身','开始腹爬或倒退爬行','能扶着家具站立']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'剪式抓握·食指指物', summary:'7月龄重点：剪式抓握、用食指指物',
+      trainings:[
+        {name:'剪式抓握', steps:['提供小一点的玩具','让宝宝用拇指和食指侧捏','"捏起来"','从大到小过渡'], tips:'7个月开始发展剪式抓握（拇指和食指侧面）。'},
+        {name:'食指指物', steps:['教室宝用食指指东西','"那是什么？指一指"','指图片、玩具','"宝宝指对了"'], tips:'用食指指物是认知和精细动作的重要里程碑。'},
+        {name:'双手协同', steps:['一手拿玩具一手操作','如一手拿容器一手放东西','"放进去"','锻炼双手配合'], tips:'7个月双手能协同工作。'}
+      ],
+      milestones:['开始用拇指和食指侧捏（剪式抓握）','能将玩具从一手换到另一手','开始用食指指物']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'连续音节·理解词义', summary:'7月龄重点：连续音节、理解"拜拜"',
+      trainings:[
+        {name:'连续音节', steps:['模仿宝宝的"baba""mama"声','"对，叫妈妈"','像对话一样回应','鼓励更多发声'], tips:'7个月能发出连续音节，但还无意识。'},
+        {name:'手势语言', steps:['教室宝挥手说"拜拜"','做拍手说"好棒"','反复示范','等宝宝模仿'], tips:'7个月开始理解手势含义，手势+语言一起教。'},
+        {name:'理解常用词', steps:['说"妈妈""爸爸"时指对应的人','"妈妈在哪？看妈妈"','说"奶"时拿奶瓶','建立词和物的联系'], tips:'7个月开始理解一些常用词的含义。'}
+      ],
+      milestones:['能发出连续音节"baba""mama"（无意识）','理解"不行""拜拜"']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'物体永久性·模仿', summary:'7月龄重点：物体永久性、主动寻找',
+      trainings:[
+        {name:'找隐藏物', steps:['当着宝宝面把玩具藏在布下','换一个位置再藏','"在哪呢？"','让宝宝寻找'], tips:'7个月能主动寻找隐藏的物体，理解物体永久性。'},
+        {name:'因果玩具', steps:['提供各种因果玩具（按、转、拨）','让宝宝自己探索','"转一转就出来了"','多种玩具轮换'], tips:'7个月对因果玩具非常感兴趣。'},
+        {name:'容器游戏', steps:['给宝宝一个容器和几个玩具','示范把玩具放进去','"放进去，拿出来"','让宝宝模仿'], tips:'容器游戏帮助理解"里面""外面"。'}
+      ],
+      milestones:['会主动寻找部分隐藏的物体','喜欢因果玩具','开始理解容器概念']
+    }
+  ],
+
+  8: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'爬行·扶站·扶走', summary:'8月龄重点：爬行熟练、扶站、扶着走',
+      trainings:[
+        {name:'爬行进阶', steps:['设置爬行通道（用枕头、隧道）','在前方放目标玩具','"爬过去拿"','增加难度和距离'], tips:'8个月爬行更熟练，可以设置有趣的爬行路线。'},
+        {name:'扶站扶走', steps:['在沙发旁放玩具','让宝宝扶着沙发站','鼓励扶着沙发侧走','"来这边拿玩具"'], tips:'8个月能扶着家具站立和侧走。'},
+        {name:'坐到站', steps:['让宝宝坐着','用玩具引导站起来','"站起来"','再教蹲下坐下'], tips:'8个月能从坐位到站位，开始练习转换姿势。'}
+      ],
+      milestones:['能独坐很稳并自由转身','爬行熟练','能扶着家具站立','扶着能走几步']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'钳形抓握·食指戳', summary:'8月龄重点：钳形抓握发展、用食指戳按',
+      trainings:[
+        {name:'钳形抓握', steps:['给宝宝小溶豆或安全小物','鼓励用拇指食指对捏','"捏起来"','从大到小'], tips:'8个月开始发展钳形抓握（拇指食指对捏），这是精细动作里程碑。'},
+        {name:'食指戳按', steps:['提供有按钮的玩具','让宝宝用食指戳','"按一下就亮了"','各种按钮玩具'], tips:'8个月喜欢用食指戳按，锻炼手指力量和精准度。'},
+        {name:'翻书页', steps:['给宝宝厚纸板书','示范翻页','"翻一页"','让宝宝尝试'], tips:'8个月能翻厚纸板书页，培养阅读兴趣。'}
+      ],
+      milestones:['开始发展拇食指对捏（钳形抓握）','能用食指指物和戳按','能翻厚纸板书页']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'理解指令·有意识发声', summary:'8月龄重点：理解简单指令、有意识叫人',
+      trainings:[
+        {name:'理解指令', steps:['说"给我"时伸出手','说"过来"时招手','配合手势教指令','等宝宝反应'], tips:'8个月能理解"给我""过来"等简单指令。'},
+        {name:'有意识叫人', steps:['说"妈妈"时指妈妈','"叫妈妈"鼓励宝宝模仿','宝宝发出"mama"时大力回应','"对，妈妈"'], tips:'8个月开始有意识地叫"妈妈""爸爸"。'},
+        {name:'声音模仿', steps:['模仿动物叫声"汪汪""喵喵"','"小狗怎么叫"','配合动物图片','让宝宝模仿'], tips:'动物叫声模仿是语言发展的好方法。'}
+      ],
+      milestones:['能理解"给我""过来"','开始有意识地叫"妈妈""爸爸"','会用声音吸引注意']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'物体恒存·模仿·因果', summary:'8月龄重点：完全理解物体恒存、模仿动作',
+      trainings:[
+        {name:'找隐藏物', steps:['当宝宝面把玩具藏在不同位置','"在哪呢？"','让宝宝找','增加隐藏难度'], tips:'8个月完全理解物体恒存性，喜欢寻找游戏。'},
+        {name:'模仿动作', steps:['教室宝拍手、挥手','"跟我做"','反复示范','等宝宝模仿'], tips:'8个月开始模仿大人的简单动作。'},
+        {name:'因果关系', steps:['提供各种因果玩具','"按这个就转了"','让宝宝自己探索','多种玩法'], tips:'8个月对因果关系理解更深入。'}
+      ],
+      milestones:['理解物体恒存性','会主动寻找完全隐藏的物体','开始模仿大人动作','有目的性动作']
+    }
+  ],
+
+  9: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'爬行·扶走·蹲下', summary:'9月龄重点：爬行灵活、扶着走、蹲下捡物',
+      trainings:[
+        {name:'灵活爬行', steps:['设置障碍爬行路线','用枕头、隧道增加趣味','"爬过去"','追逐滚动的球'], tips:'9个月爬行非常灵活，可以设置有挑战的路线。'},
+        {name:'蹲下捡物', steps:['让宝宝扶着站','在脚边放玩具','"蹲下去捡"','再站起来'], tips:'9个月能蹲下捡物再站起，平衡能力增强。'},
+        {name:'扶走练习', steps:['让宝宝扶着小推车或沙发','"走来这边"','在前面放目标','短距离练习'], tips:'9个月扶着走得更好，注意安全。'}
+      ],
+      milestones:['爬行灵活','能从坐位到站位','扶着能走几步','能蹲下捡物']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'钳形抓握·扔东西', summary:'9月龄重点：钳形抓握成熟、喜欢扔东西',
+      trainings:[
+        {name:'精确捏取', steps:['给宝宝小溶豆','"用手指捏起来"','从大到小','观察捏取方式'], tips:'9个月钳形抓握更成熟，能精确捏起小物。'},
+        {name:'扔东西游戏', steps:['给宝宝一个容器和玩具','"放进去，再倒出来"','让宝宝体验扔和倒','"哗啦全出来了"'], tips:'9个月喜欢扔东西，这是认知行为不是捣乱。'},
+        {name:'双手配合', steps:['一手拿盖子一手拿瓶子','"盖上盖子"','让宝宝尝试','从大到小盖子'], tips:'9个月双手配合能力增强。'}
+      ],
+      milestones:['钳形抓握成熟','能精确捏起小物','喜欢扔东西','能将物品放入容器']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'有意识叫人·理解更多词', summary:'9月龄重点：有意识叫爸妈、理解更多日常用语',
+      trainings:[
+        {name:'有意识叫人', steps:['"叫妈妈"鼓励宝宝说mama','宝宝叫了就大力回应','"对，妈妈在这里"','反复练习'], tips:'9个月能有意识地叫"妈妈""爸爸"。'},
+        {name:'理解更多词', steps:['说"不行""再见""抱抱"时配合动作','"不要"配合摇头','"要"配合点头','让宝宝理解'], tips:'9个月理解越来越多日常用语。'},
+        {name:'用声音表达', steps:['观察宝宝不同需求的声音','"宝宝想要什么？"','教宝宝用声音+手势表达','回应宝宝的表达'], tips:'9个月用声音+手势表达需求。'}
+      ],
+      milestones:['有意识地叫"妈妈""爸爸"','能理解"不""再见""抱抱"','会用声音表达需求']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'模仿·容器·分类', summary:'9月龄重点：模仿大人动作、容器取放、简单分类',
+      trainings:[
+        {name:'模仿动作', steps:['教室宝拍手、飞吻、摇头','"跟我学"','反复示范','等宝宝模仿'], tips:'9个月模仿能力增强，能模仿更多动作。'},
+        {name:'容器游戏', steps:['给宝宝容器和小玩具','"放进去，拿出来"','从大到小','增加难度'], tips:'容器游戏是经典的认知训练。'},
+        {name:'简单分类', steps:['把不同颜色/形状的玩具分开','"红色的放一起"','示范分类','让宝宝尝试'], tips:'9个月开始有简单的分类意识。'}
+      ],
+      milestones:['开始模仿大人的动作','理解简单因果关系','喜欢容器里取放物品','开始有简单分类意识']
+    }
+  ],
+
+  10: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'独站·扶走·侧走', summary:'10月龄重点：扶着侧走、独站片刻、开始尝试独走',
+      trainings:[
+        {name:'扶着侧走', steps:['让宝宝扶着沙发或桌子','"来这边拿玩具"','在侧方放目标','左右都练'], tips:'10个月扶着走得更好，能侧走。'},
+        {name:'独站片刻', steps:['让宝宝靠着沙发站','慢慢松开手','"宝宝自己站"','几秒钟即可'], tips:'10个月能独站片刻，平衡能力在发展。'},
+        {name:'推车走路', steps:['给宝宝稳固的学步推车','"推着走"','在前方放目标','短距离练习'], tips:'10个月可以推着小车走路，比扶家具更挑战平衡。'}
+      ],
+      milestones:['能扶着家具侧走','能从站位坐下','开始尝试独站片刻']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'放入容器·翻书', summary:'10月龄重点：将物品放入容器、翻书页',
+      trainings:[
+        {name:'放入容器', steps:['给宝宝瓶子和小球','"放进去"','示范并让宝宝模仿','"哗啦倒出来"'], tips:'10个月能将物品放入容器，理解"里面"。'},
+        {name:'翻书页', steps:['读厚纸板书','"翻一页"','让宝宝自己翻','每天亲子阅读'], tips:'10个月能翻厚纸板书页，培养阅读习惯。'},
+        {name:'涂鸦初体验', steps:['给宝宝大蜡笔和白纸','"画一画"','握着宝宝的手画','"宝宝画的真棒"'], tips:'10个月可以开始涂鸦体验。'}
+      ],
+      milestones:['能将物品放入容器','会翻厚纸板书页','喜欢把东西拿出来又放进去']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'单词·摇头·理解', summary:'10月龄重点：说出1-2个有意义的词、用摇头表示不',
+      trainings:[
+        {name:'有意义单词', steps:['教宝宝说"妈妈""爸爸""奶奶"','"说妈妈"等宝宝模仿','宝宝说了大力回应','"对，妈妈"'], tips:'10个月开始说出有意义的词。'},
+        {name:'摇头说不', steps:['当宝宝不想要时','"不要吗？摇摇头"','示范摇头','让宝宝模仿'], tips:'10个月会用摇头表示"不"。'},
+        {name:'理解更多', steps:['"给我""不要""过来"','配合手势','等宝宝反应','日常反复使用'], tips:'10个月理解越来越多指令。'}
+      ],
+      milestones:['能说出1-2个有意义的词','理解"给我""不要"','会用摇头表示不']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'里外·模仿·偏好', summary:'10月龄重点：理解"里面外面"、模仿大人、明确偏好',
+      trainings:[
+        {name:'里外概念', steps:['用容器演示"里面""外面"','"玩具在里面"','"拿出来了，在外面"','让宝宝操作'], tips:'10个月开始理解"里面""外面"概念。'},
+        {name:'模仿日常', steps:['示范喂娃娃吃饭','"喂宝宝吃饭"','让宝宝模仿','给娃娃盖被子等'], tips:'10个月能模仿日常活动，象征性游戏萌芽。'},
+        {name:'选择游戏', steps:['拿两个玩具让宝宝选','"要哪个？"','观察宝宝的选择','尊重宝宝偏好'], tips:'10个月有明确偏好，让宝宝做选择。'}
+      ],
+      milestones:['开始理解"里面""外面"','喜欢模仿大人动作','有明确偏好']
+    }
+  ],
+
+  11: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'独站·迈步', summary:'11月龄重点：独站较稳、开始独立迈步',
+      trainings:[
+        {name:'独站练习', steps:['让宝宝靠着站','慢慢松手','"自己站"','逐渐延长时间'], tips:'11个月能独站较稳，平衡能力发展。'},
+        {name:'独立迈步', steps:['让宝宝靠着沙发站','在一步远处伸手等宝宝','"来妈妈这里"','从1-2步开始'], tips:'11个月部分宝宝开始独立迈步。'},
+        {name:'上下楼梯', steps:['在矮台阶前（有保护）','"爬上去"','让宝宝爬上台阶','手把手保护'], tips:'11个月能扶着爬上矮楼梯。'}
+      ],
+      milestones:['能独站较稳','扶着能走','部分宝宝开始独立迈步']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'精确捏取·涂鸦·盖盖子', summary:'11月龄重点：精确捏取、涂鸦、盖盖子',
+      trainings:[
+        {name:'精确捏取', steps:['给宝宝小物件（安全大小）','"捏起来"','用拇指食指','从大到小'], tips:'11个月钳形抓握完全成熟。'},
+        {name:'涂鸦', steps:['给宝宝蜡笔和白纸','"画一画"','握着宝宝手画线条','"宝宝画得真好"'], tips:'11个月涂鸦更有目的性。'},
+        {name:'盖盖子', steps:['给宝宝瓶子和盖子','"盖上盖子"','示范并让宝宝尝试','从大到小'], tips:'11个月能尝试盖盖子，手眼协调好。'}
+      ],
+      milestones:['能精确捏起小物','喜欢涂鸦','能把盖子盖上']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'单词·指物·理解', summary:'11月龄重点：说出2-3个词、用手指指物',
+      trainings:[
+        {name:'词汇扩展', steps:['教室宝说日常词"奶""要""抱"','"说奶"等宝宝模仿','宝宝说了就回应','"对，要喝奶"'], tips:'11个月能说出2-3个有意义的词。'},
+        {name:'手指指物', steps:['"那是什么？指一指"','让宝宝用食指指东西','"对，那是小狗"','指认日常物品'], tips:'11个月会用食指指物表达兴趣。'},
+        {name:'理解指令', steps:['"把球给妈妈"','"过来坐下"','配合手势','等宝宝执行'], tips:'11个月理解简单短指令。'}
+      ],
+      milestones:['能说出2-3个有意义词','理解很多日常用语','会用手指指物']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'因果·分类·工具', summary:'11月龄重点：理解因果关系、分类游戏、用物体做工具',
+      trainings:[
+        {name:'扔东西观察', steps:['给宝宝不同玩具','"扔下去看看"','观察宝宝如何扔','"咚，掉下来了"'], tips:'11个月故意扔东西看结果，是认知行为。'},
+        {name:'分类游戏', steps:['把不同形状的积木分开','"圆的放一起"','示范分类','让宝宝尝试'], tips:'11个月开始理解简单分类。'},
+        {name:'用工具', steps:['用棍子够远处的玩具','"用这个够"','示范用工具','让宝宝模仿'], tips:'11个月开始会用物体做工具。'}
+      ],
+      milestones:['开始理解因果关系','会故意扔东西看结果','喜欢分类游戏','开始用物体做工具']
+    }
+  ],
+
+  12: [
+    { id:'motor', name:'大动作', icon:'💪', color:'pink', desc:'独走·蹲起·楼梯', summary:'12月龄重点：独走几步、蹲下站起、扶着上下楼梯',
+      trainings:[
+        {name:'独走练习', steps:['在一步远处伸手等宝宝','"来妈妈这里"','从1-2步到3-5步','大力鼓励'], tips:'12个月多数宝宝能独走几步，不着急。'},
+        {name:'蹲起练习', steps:['让宝宝站着','"蹲下去捡球"','再站起来','反复练习'], tips:'12个月能蹲下捡物再站起。'},
+        {name:'楼梯爬行', steps:['在矮台阶前（有保护）','"爬上去"','手把手保护','"再爬下来"'], tips:'12个月能扶着爬上矮楼梯。'}
+      ],
+      milestones:['多数宝宝能独走几步','能扶着上下楼梯（爬行）','蹲下能站起']
+    },
+    { id:'fine', name:'精细动作', icon:'✋', color:'mint', desc:'精确捏取·翻书·涂鸦', summary:'12月龄重点：拇指食指精确捏取、翻书页、涂鸦',
+      trainings:[
+        {name:'精细捏取', steps:['给宝宝小溶豆','"捏起来吃"','用拇指食指精确捏','从大到小'], tips:'12个月精细动作很成熟。'},
+        {name:'翻书阅读', steps:['每天亲子阅读','"翻一页"','让宝宝自己翻','指认图片'], tips:'12个月能翻厚纸板书页，培养阅读习惯。'},
+        {name:'涂鸦', steps:['给宝宝蜡笔和白纸','"画一画"','让宝宝自由画','"宝宝画得真好"'], tips:'12个月涂鸦更有目的性，培养创造力。'}
+      ],
+      milestones:['能用拇指食指精确捏取','会翻厚纸板书页','喜欢用笔涂鸦']
+    },
+    { id:'language', name:'语言启蒙', icon:'🗣️', color:'sky', desc:'单词·理解·手势', summary:'12月龄重点：说3-5个词、理解简单指令、挥手再见',
+      trainings:[
+        {name:'词汇积累', steps:['教日常词"妈妈""爸爸""奶""要""不要"','"说妈妈"等宝宝模仿','宝宝说了大力回应','日常反复使用'], tips:'12个月能说3-5个有意义词。'},
+        {name:'挥手再见', steps:['出门时"跟爸爸拜拜"','示范挥手','让宝宝模仿','"宝宝拜拜"'], tips:'12个月会挥手再见，手势语言成熟。'},
+        {name:'理解指令', steps:['"把球给妈妈"','"过来坐下"','"不要碰"','等宝宝执行'], tips:'12个月理解简单短指令。'}
+      ],
+      milestones:['能说3-5个有意义词','理解简单指令','会挥手再见']
+    },
+    { id:'cognitive', name:'认知启蒙', icon:'🧠', color:'peach', desc:'工具·分类·象征', summary:'12月龄重点：用物体做工具、简单分类、模仿日常活动',
+      trainings:[
+        {name:'用工具', steps:['用棍子够远处玩具','"用这个够"','示范并让宝宝模仿','"真棒"'], tips:'12个月会用物体做工具。'},
+        {name:'分类游戏', steps:['把不同颜色/形状分开','"圆的放一起"','示范分类','让宝宝尝试'], tips:'12个月开始理解简单分类。'},
+        {name:'象征游戏', steps:['"喂娃娃吃饭"','"给娃娃盖被子"','让宝宝模仿','"娃娃睡了"'], tips:'12个月开始象征性游戏，模仿日常活动。'}
+      ],
+      milestones:['开始用物体做工具','理解简单分类','会模仿日常活动（喂娃娃）']
+    }
+  ]
+};
+
+/* 获取指定月龄的领域数据，如果该月龄没有则取最近的 */
+function getDomainsForAge(months) {
+  if (LEARN_DOMAINS_BY_AGE[months]) return LEARN_DOMAINS_BY_AGE[months];
+  // 找最近的月龄
+  const ages = Object.keys(LEARN_DOMAINS_BY_AGE).map(Number).sort((a,b)=>a-b);
+  let closest = ages[0];
+  for (const a of ages) {
+    if (a <= months) closest = a;
+  }
+  return LEARN_DOMAINS_BY_AGE[closest];
+}
+
+/* 获取指定月龄的发育特点 */
+function getDevSummaryForAge(months) {
+  if (DEV_SUMMARY_BY_AGE[months]) return DEV_SUMMARY_BY_AGE[months];
+  const ages = Object.keys(DEV_SUMMARY_BY_AGE).map(Number).sort((a,b)=>a-b);
+  let closest = ages[0];
+  for (const a of ages) {
+    if (a <= months) closest = a;
+  }
+  return DEV_SUMMARY_BY_AGE[closest];
+}
+
+
+/* ---------- 成长记录：里程碑数据（CDC标准 0-12月） ---------- */
+const MILESTONES_DATA = [
+  {
+    category: 'social', categoryName: '💛 社交情感',
+    items: [
+      { id: 'calm_voice', text: '听到熟悉声音会安静', monthAge: 0 },
+      { id: 'prefer_face', text: '偏好人脸图案', monthAge: 0 },
+      { id: 'social_smile_2m', text: '出现社交性微笑', monthAge: 2 },
+      { id: 'smile_spontaneous', text: '能自主微笑引起注意', monthAge: 4 },
+      { id: 'laugh_giggle', text: '被逗时发出咯咯笑声', monthAge: 4 },
+      { id: 'attention_seeking', text: '用动作或声音吸引注意', monthAge: 4 },
+      { id: 'recognize_familiar', text: '能认出熟悉的人', monthAge: 3 },
+      { id: 'stranger_anxiety', text: '开始对陌生人有警觉', monthAge: 6 },
+      { id: 'prefer_primary', text: '明显偏爱主要照顾者', monthAge: 7 },
+      { id: 'clap_hands', text: '会拍手', monthAge: 9 },
+      { id: 'wave_bye', text: '会挥手再见', monthAge: 10 },
+      { id: 'hug_back', text: '会主动拥抱', monthAge: 11 },
+      { id: 'show_objects', text: '会把东西给别人展示', monthAge: 12 }
+    ]
+  },
+  {
+    category: 'language', categoryName: '🗣️ 语言沟通',
+    items: [
+      { id: 'cry_differs', text: '不同需求有不同哭声', monthAge: 2 },
+      { id: 'cooing', text: '发出"ooo""aahh"等元音声', monthAge: 3 },
+      { id: 'respond_voice', text: '对话时有声音回应', monthAge: 4 },
+      { id: 'turn_to_sound', text: '听到声音会转头寻找', monthAge: 4 },
+      { id: 'babble_consonant', text: '发出"ba""ma""da"等辅音', monthAge: 6 },
+      { id: 'understand_no', text: '能理解"不行"', monthAge: 6 },
+      { id: 'babble_chain', text: '发出连续音节"baba""mama"（无意识）', monthAge: 7 },
+      { id: 'understand_bye', text: '理解"拜拜"', monthAge: 7 },
+      { id: 'say_mama_meaningful', text: '有意识地叫"妈妈""爸爸"', monthAge: 9 },
+      { id: 'understand_more', text: '理解"不""再见""抱抱"', monthAge: 9 },
+      { id: 'say_1_2_words', text: '能说出1-2个有意义的词', monthAge: 10 },
+      { id: 'shake_head_no', text: '会用摇头表示不', monthAge: 10 },
+      { id: 'say_3_5_words', text: '能说3-5个有意义词', monthAge: 12 },
+      { id: 'follow_simple_cmd', text: '理解简单指令如"给我"', monthAge: 12 }
+    ]
+  },
+  {
+    category: 'cognitive', categoryName: '🧠 认知',
+    items: [
+      { id: 'imitate_face', text: '能模仿简单面部表情', monthAge: 0 },
+      { id: 'track_object', text: '目光能追踪移动的物体', monthAge: 2 },
+      { id: 'face_recognition', text: '能认出熟悉的人', monthAge: 3 },
+      { id: 'look_hands', text: '会饶有兴趣地看自己的手', monthAge: 4 },
+      { id: 'bottle_mouth', text: '饿了看到奶瓶会张嘴', monthAge: 4 },
+      { id: 'cause_effect', text: '开始理解因果关系（摇晃玩具会响）', monthAge: 5 },
+      { id: 'find_part_hidden', text: '能寻找部分隐藏的物体', monthAge: 5 },
+      { id: 'object_permanence', text: '开始理解物体恒存性', monthAge: 6 },
+      { id: 'find_fully_hidden', text: '会主动寻找完全隐藏的物体', monthAge: 8 },
+      { id: 'imitate_action', text: '开始模仿大人的动作', monthAge: 9 },
+      { id: 'container_play', text: '喜欢容器里取放物品', monthAge: 9 },
+      { id: 'understand_in_out', text: '开始理解"里面""外面"', monthAge: 10 },
+      { id: 'use_tool', text: '开始用物体做工具', monthAge: 11 },
+      { id: 'simple_sort', text: '理解简单分类', monthAge: 12 },
+      { id: 'symbolic_play', text: '会模仿日常活动（喂娃娃）', monthAge: 12 }
+    ]
+  },
+  {
+    category: 'motor', categoryName: '🏃 运动发育',
+    items: [
+      { id: 'lift_head_brief', text: '俯卧时能短暂抬头片刻', monthAge: 0 },
+      { id: 'lift_head_45', text: '俯卧能抬头45度', monthAge: 2 },
+      { id: 'lift_head_90', text: '俯卧能抬头90度', monthAge: 3 },
+      { id: 'forearm_support', text: '俯卧时能用前臂支撑', monthAge: 4 },
+      { id: 'head_stable', text: '头部稳定控制不摇晃', monthAge: 4 },
+      { id: 'roll_to_side', text: '开始尝试从仰卧翻到侧卧', monthAge: 4 },
+      { id: 'roll_over', text: '能从俯卧翻到仰卧', monthAge: 5 },
+      { id: 'sit_with_support', text: '能独坐片刻（用手支撑）', monthAge: 5 },
+      { id: 'sit_independently', text: '能独坐片刻', monthAge: 6 },
+      { id: 'hold_toy', text: '能握住放入手中的玩具', monthAge: 4 },
+      { id: 'swing_arms', text: '会用手臂挥打玩具', monthAge: 4 },
+      { id: 'hand_to_mouth', text: '能将手送到嘴边', monthAge: 4 },
+      { id: 'reach_grasp', text: '能主动伸手抓握玩具', monthAge: 5 },
+      { id: 'transfer_hands', text: '能双手传递物品', monthAge: 6 },
+      { id: 'sit_stable', text: '能独坐很稳并自由转身', monthAge: 7 },
+      { id: 'crawl_start', text: '开始腹爬或倒退爬行', monthAge: 7 },
+      { id: 'pull_to_stand', text: '能扶着家具站立', monthAge: 7 },
+      { id: 'pincer_grasp', text: '开始发展拇食指对捏（钳形抓握）', monthAge: 8 },
+      { id: 'crawl_well', text: '爬行熟练', monthAge: 8 },
+      { id: 'cruise', text: '扶着家具侧走', monthAge: 10 },
+      { id: 'stand_alone', text: '能独站片刻', monthAge: 10 },
+      { id: 'first_steps', text: '能独走几步', monthAge: 12 },
+      { id: 'stoop_recover', text: '能蹲下捡物再站起', monthAge: 12 }
+    ]
+  }
+];
+
+/* ---------- WHO生长标准参考（0-12月） ---------- */
+const WHO_STANDARDS = {
+  male: {
+    0:  { weight:{min:2.5,max:4.3,p50:3.3}, height:{min:46.1,max:53.7,p50:49.9}, head:{min:32.4,max:37.3,p50:34.5} },
+    1:  { weight:{min:3.4,max:5.7,p50:4.5}, height:{min:50.8,max:58.6,p50:54.7}, head:{min:35.3,max:40.5,p50:37.3} },
+    2:  { weight:{min:4.3,max:7.0,p50:5.6}, height:{min:54.4,max:62.4,p50:58.4}, head:{min:37.0,max:42.5,p50:39.1} },
+    3:  { weight:{min:5.0,max:8.0,p50:6.4}, height:{min:57.3,max:65.5,p50:61.4}, head:{min:38.1,max:43.6,p50:40.5} },
+    4:  { weight:{min:5.6,max:8.7,p50:7.0}, height:{min:59.7,max:68.0,p50:63.9}, head:{min:39.2,max:44.5,p50:41.8} },
+    5:  { weight:{min:6.0,max:9.3,p50:7.5}, height:{min:61.7,max:70.1,p50:65.9}, head:{min:40.1,max:45.4,p50:42.9} },
+    6:  { weight:{min:6.4,max:9.8,p50:7.9}, height:{min:63.3,max:71.9,p50:67.6}, head:{min:40.9,max:46.3,p50:43.8} },
+    7:  { weight:{min:6.7,max:10.3,p50:8.3}, height:{min:64.8,max:73.5,p50:69.2}, head:{min:41.5,max:47.0,p50:44.6} },
+    8:  { weight:{min:7.0,max:10.7,p50:8.6}, height:{min:66.2,max:75.1,p50:70.6}, head:{min:42.0,max:47.7,p50:45.3} },
+    9:  { weight:{min:7.2,max:11.1,p50:8.9}, height:{min:67.5,max:76.5,p50:72.0}, head:{min:42.5,max:48.3,p50:45.9} },
+    10: { weight:{min:7.5,max:11.4,p50:9.2}, height:{min:68.7,max:77.9,p50:73.3}, head:{min:42.9,max:48.8,p50:46.4} },
+    11: { weight:{min:7.7,max:11.7,p50:9.4}, height:{min:69.9,max:79.2,p50:74.5}, head:{min:43.2,max:49.3,p50:46.9} },
+    12: { weight:{min:7.8,max:12.0,p50:9.6}, height:{min:71.0,max:80.5,p50:75.7}, head:{min:43.5,max:49.8,p50:47.3} }
+  },
+  female: {
+    0:  { weight:{min:2.4,max:4.2,p50:3.2}, height:{min:45.4,max:52.9,p50:49.1}, head:{min:31.9,max:36.7,p50:33.9} },
+    1:  { weight:{min:3.2,max:5.4,p50:4.2}, height:{min:49.8,max:57.6,p50:53.7}, head:{min:34.6,max:39.6,p50:36.5} },
+    2:  { weight:{min:3.9,max:6.6,p50:5.1}, height:{min:53.0,max:60.8,p50:56.9}, head:{min:36.3,max:41.4,p50:38.3} },
+    3:  { weight:{min:4.5,max:7.5,p50:5.8}, height:{min:55.6,max:63.3,p50:59.8}, head:{min:37.3,max:42.4,p50:39.5} },
+    4:  { weight:{min:5.2,max:7.5,p50:6.4}, height:{min:57.8,max:66.2,p50:62.1}, head:{min:38.1,max:43.4,p50:40.6} },
+    5:  { weight:{min:5.5,max:8.1,p50:6.9}, height:{min:59.6,max:68.1,p50:64.0}, head:{min:38.9,max:44.3,p50:41.5} },
+    6:  { weight:{min:5.8,max:8.5,p50:7.3}, height:{min:61.2,max:69.8,p50:65.7}, head:{min:39.6,max:45.1,p50:42.2} },
+    7:  { weight:{min:6.1,max:8.9,p50:7.6}, height:{min:62.7,max:71.4,p50:67.3}, head:{min:40.2,max:45.8,p50:42.8} },
+    8:  { weight:{min:6.3,max:9.3,p50:7.9}, height:{min:64.0,max:72.9,p50:68.7}, head:{min:40.7,max:46.4,p50:43.4} },
+    9:  { weight:{min:6.5,max:9.6,p50:8.2}, height:{min:65.3,max:74.3,p50:70.1}, head:{min:41.1,max:46.9,p50:43.9} },
+    10: { weight:{min:6.7,max:9.9,p50:8.5}, height:{min:66.5,max:75.6,p50:71.5}, head:{min:41.5,max:47.4,p50:44.4} },
+    11: { weight:{min:6.9,max:10.2,p50:8.7}, height:{min:67.7,max:76.9,p50:72.8}, head:{min:41.8,max:47.8,p50:44.8} },
+    12: { weight:{min:7.0,max:10.5,p50:8.9}, height:{min:68.9,max:78.1,p50:74.0}, head:{min:42.1,max:48.3,p50:45.2} }
+  }
+};
+
+/* 获取指定月龄的WHO标准 */
+function getWHOForAge(months, gender) {
+  const data = WHO_STANDARDS[gender] || WHO_STANDARDS.female;
+  if (data[months]) return data[months];
+  const ages = Object.keys(data).map(Number).sort((a,b)=>a-b);
+  let closest = ages[0];
+  for (const a of ages) {
+    if (a <= months) closest = a;
+  }
+  return data[closest];
+}
+
+/* ---------- 打卡项目 ---------- */
+const CHECKIN_ITEMS = [
+  { id: 'visual', name: '👁️ 视觉训练' },
+  { id: 'auditory', name: '👂 听觉训练' },
+  { id: 'tactile', name: '✋ 触觉训练' },
+  { id: 'tummy_time', name: '🤸 俯卧练习' },
+  { id: 'grasp', name: '✊ 抓握练习' },
+  { id: 'language', name: '🗣️ 语言互动' },
+  { id: 'reading', name: '📖 亲子阅读' },
+  { id: 'massage', name: '💆 按摩抚触' }
+];
+
+/* ---------- 游戏库（15个游戏） ---------- */
+const GAMES_DATA = [
+  {
+    id: 'blackwhite_card',
+    name: '黑白卡追视',
+    icon: '⚫⚪',
+    ageRange: '0-6个月',
+    domains: ['视觉'],
+    materials: ['黑白卡片'],
+    duration: '2-3分钟',
+    desc: '用高对比度黑白卡片训练宝宝视觉追踪能力',
+    steps: [
+      '让宝宝舒适地躺着或半坐着',
+      '在宝宝眼前20-30cm处展示黑白卡片',
+      '等宝宝注视卡片后，缓慢将卡片左右移动',
+      '观察宝宝目光是否跟随卡片',
+      '每次2-3分钟，宝宝失去兴趣时停止'
+    ],
+    tip: '移动速度约5cm/秒，宝宝目光跟丢时从中间重新开始'
+  },
+  {
+    id: 'rattle_sound',
+    name: '摇铃寻声',
+    icon: '🔔',
+    ageRange: '3-6个月',
+    domains: ['听觉', '认知'],
+    materials: ['摇铃'],
+    duration: '3-5分钟',
+    desc: '在宝宝头侧摇动摇铃，引导转头寻找声源',
+    steps: [
+      '让宝宝平躺或半坐',
+      '在宝宝头的一侧（距耳朵20cm）轻轻摇动摇铃',
+      '等待宝宝转头寻找声音来源',
+      '宝宝找到声源后，换另一侧继续',
+      '可以变换声音节奏（快摇/慢摇）'
+    ],
+    tip: '声音不要太响，摇铃距耳朵至少20cm，避免损伤听力'
+  },
+  {
+    id: 'foot_explore',
+    name: '小脚丫探险',
+    icon: '🦶',
+    ageRange: '3-6个月',
+    domains: ['触觉', '认知'],
+    materials: ['毛绒物品', '硅胶玩具', '丝绸布'],
+    duration: '3-5分钟',
+    desc: '用不同材质物品轻触宝宝脚心，刺激触觉发育',
+    steps: [
+      '让宝宝舒适地躺着',
+      '准备毛绒、硅胶、丝绸等不同材质的物品',
+      '依次轻触宝宝的脚心',
+      '一边触一边描述："这是软软的毛绒"',
+      '观察宝宝对不同材质的反应'
+    ],
+    tip: '力度要轻柔，如果宝宝缩脚说明可能怕痒，减少力度'
+  },
+  {
+    id: 'tummy_time',
+    name: '俯卧抬头',
+    icon: '🤸',
+    ageRange: '2-6个月',
+    domains: ['大运动'],
+    materials: ['爬行垫', '彩色玩具'],
+    duration: '1-3分钟',
+    desc: '趴着用玩具引导抬头，锻炼颈部和背部肌肉',
+    steps: [
+      '在爬行垫上让宝宝趴着',
+      '在宝宝前方20-30cm处放彩色玩具',
+      '摇晃玩具吸引宝宝抬头',
+      '鼓励宝宝用前臂支撑上身',
+      '从1分钟开始，逐渐延长时间'
+    ],
+    tip: '必须在宝宝清醒时进行，全程看护，宝宝哭闹立即停止'
+  },
+  {
+    id: 'grasp_rattle',
+    name: '抓握摇铃',
+    icon: '🪅',
+    ageRange: '3-6个月',
+    domains: ['精细动作', '认知'],
+    materials: ['摇铃', '牙胶'],
+    duration: '3-5分钟',
+    desc: '将摇铃放入宝宝手中，鼓励主动抓握',
+    steps: [
+      '让宝宝半坐着或仰卧',
+      '将摇铃轻触宝宝手背，引发抓握反射',
+      '宝宝抓住后，轻轻拉摇铃让宝宝握紧',
+      '摇晃摇铃让宝宝感受声音因果',
+      '左右手交替练习'
+    ],
+    tip: '选择轻便易握的摇铃，宝宝松手是正常的，多次尝试'
+  },
+  {
+    id: 'peekaboo',
+    name: '躲猫猫',
+    icon: '🙈',
+    ageRange: '4-8个月',
+    domains: ['认知', '社交'],
+    materials: ['无'],
+    duration: '2-3分钟',
+    desc: '用手遮脸再露出，帮助宝宝理解物体恒存性',
+    steps: [
+      '与宝宝面对面',
+      '用双手遮住自己的脸',
+      '说"橙子，妈妈在哪呢？"',
+      '快速移开手露出脸，说"喵~在这里！"',
+      '配合夸张开心的表情，反复玩'
+    ],
+    tip: '这是经典婴儿游戏，宝宝会越来越期待"出现"的瞬间'
+  },
+  {
+    id: 'face_theater',
+    name: '人脸表情剧场',
+    icon: '😊',
+    ageRange: '0-6个月',
+    domains: ['社交', '视觉'],
+    materials: ['无'],
+    duration: '2-3分钟',
+    desc: '在距宝宝20-30cm处做各种夸张表情',
+    steps: [
+      '让宝宝舒适地躺着或抱着',
+      '脸距离宝宝20-30cm',
+      '依次做不同表情：大笑、惊讶、嘟嘴等',
+      '每个表情停留3-5秒',
+      '观察宝宝是否模仿或回应'
+    ],
+    tip: '宝宝最喜欢看人脸，夸张的表情更容易引起注意'
+  },
+  {
+    id: 'mirror_play',
+    name: '照镜子',
+    icon: '🪞',
+    ageRange: '3-8个月',
+    domains: ['认知', '社交'],
+    materials: ['安全镜子'],
+    duration: '3-5分钟',
+    desc: '抱宝宝看镜子中的自己，描述五官',
+    steps: [
+      '抱着宝宝面对安全的镜子',
+      '指着镜中的影像说"看，这是橙子"',
+      '做各种表情让宝宝观察镜中变化',
+      '指着宝宝的五官一一描述："这是鼻子，这是嘴巴"',
+      '可以拉着宝宝的小手触摸镜面'
+    ],
+    tip: '使用不易碎的安全镜子，4个月宝宝还不能认出自己，但很喜欢看'
+  },
+  {
+    id: 'passive_exercise',
+    name: '被动操',
+    icon: '🏃',
+    ageRange: '2-6个月',
+    domains: ['大运动'],
+    materials: ['防滑垫'],
+    duration: '3-5分钟',
+    desc: '轻柔活动宝宝四肢关节，促进运动发育',
+    steps: [
+      '让宝宝仰卧在防滑垫上',
+      '轻柔地活动宝宝的手臂（上举、外展、弯曲）',
+      '活动宝宝的腿部（蹬自行车动作）',
+      '轻轻做踝关节和腕关节旋转',
+      '每个动作重复4-6次，配合儿歌'
+    ],
+    tip: '动作一定要轻柔缓慢，不要强行拉伸，宝宝抗拒时停止'
+  },
+  {
+    id: 'baby_massage',
+    name: '亲子按摩',
+    icon: '💆',
+    ageRange: '0-12个月',
+    domains: ['情感', '触觉'],
+    materials: ['婴儿油'],
+    duration: '5-10分钟',
+    desc: '洗澡后轻柔按摩宝宝四肢和背部，增进亲子情感',
+    steps: [
+      '在温暖舒适的环境中，宝宝洗澡后进行',
+      '取适量婴儿油搓热双手',
+      '从胸部开始，轻柔向外画圈按摩',
+      '依次按摩手臂、腹部、腿部、背部',
+      '一边按摩一边和宝宝说话或唱歌'
+    ],
+    tip: '力度要非常轻柔，宝宝皮肤娇嫩。避开脊柱和关节背面'
+  },
+  {
+    id: 'cooing_chat',
+    name: '咿呀对话',
+    icon: '💬',
+    ageRange: '3-8个月',
+    domains: ['语言'],
+    materials: ['无'],
+    duration: '3-5分钟',
+    desc: '模仿宝宝的咿呀声，进行"对话"互动',
+    steps: [
+      '与宝宝面对面，距离20-30cm',
+      '等待宝宝发出"ooo""aahh"的声音',
+      '模仿宝宝的声音回应',
+      '停顿2-3秒，等待宝宝再次发声',
+      '像真实对话一样轮流交流'
+    ],
+    tip: '这种回应式互动是语言发展最重要的基础'
+  },
+  {
+    id: 'nursery_rhyme',
+    name: '儿歌律动',
+    icon: '🎵',
+    ageRange: '0-12个月',
+    domains: ['语言', '大运动'],
+    materials: ['无'],
+    duration: '3-5分钟',
+    desc: '唱简单儿歌配合肢体动作，促进语言和节奏感',
+    steps: [
+      '选择节奏简单的儿歌如《小星星》',
+      '让宝宝舒适地躺着或抱着',
+      '一边唱一边配合宝宝肢体做动作',
+      '唱到高潮部分做夸张动作',
+      '反复唱同一首歌，让宝宝逐渐熟悉'
+    ],
+    tip: '家长面对面唱比播放录音效果好得多'
+  },
+  {
+    id: 'tissue_box',
+    name: '纸巾盒探秘',
+    icon: '📦',
+    ageRange: '4-8个月',
+    domains: ['精细动作', '认知'],
+    materials: ['空纸巾盒', '不同材质布料'],
+    duration: '3-5分钟',
+    desc: '在纸巾盒中塞入布料让宝宝抽拉，锻炼手眼协调',
+    steps: [
+      '准备一个空纸巾盒',
+      '将不同颜色的布料条连接塞入盒中',
+      '让宝宝看到布料露出的部分',
+      '鼓励宝宝拉出布料',
+      '一边拉一边描述颜色和材质'
+    ],
+    tip: '确保布料条连接在一起，不会整条被拉出吞入'
+  },
+  {
+    id: 'photo_album',
+    name: '看照片',
+    icon: '📸',
+    ageRange: '3-8个月',
+    domains: ['认知', '社交'],
+    materials: ['家庭照片'],
+    duration: '2-3分钟',
+    desc: '看全家福照片，指认家人，促进认知发展',
+    steps: [
+      '准备几张家人照片（打印或手机）',
+      '抱宝宝在距离20-30cm处看照片',
+      '指着照片中的人说"这是妈妈""这是爸爸"',
+      '让宝宝注视照片几秒',
+      '换下一张继续'
+    ],
+    tip: '4个月宝宝对人脸非常感兴趣，照片是很好的认知材料'
+  },
+  {
+    id: 'kick_toy',
+    name: '蹬腿踢玩具',
+    icon: '⚽',
+    ageRange: '3-6个月',
+    domains: ['大运动', '认知'],
+    materials: ['可踢发声的软玩具'],
+    duration: '3-5分钟',
+    desc: '在脚底放可踢玩具，激发蹬腿和因果关系理解',
+    steps: [
+      '让宝宝仰卧',
+      '在宝宝脚底放一个踢动能发声的玩具',
+      '当宝宝蹬腿碰到玩具时，鼓励说"哇，响了！"',
+      '宝宝会逐渐理解踢腿→发声的因果关系',
+      '左右交替放置玩具'
+    ],
+    tip: '选择柔软的玩具，避免硬物碰到宝宝'
+  },
+  {
+    id: 'crawl_chase',
+    name: '爬行追球',
+    icon: ' crawling',
+    ageRange: '7-12个月',
+    domains: ['大运动', '认知'],
+    materials: ['滚动球', '爬行垫'],
+    duration: '5-10分钟',
+    desc: '让宝宝追逐滚动的球，锻炼爬行能力和方向感',
+    steps: [
+      '在爬行垫上滚一个球',
+      '鼓励宝宝爬着追球',
+      '"去追球球"',
+      '宝宝拿到球后大力鼓励'
+    ],
+    tip: '选择软质球，滚动速度不要太快，让宝宝能追上。'
+  },
+  {
+    id: 'block_tower',
+    name: '叠积木',
+    icon: '🧱',
+    ageRange: '8-12个月',
+    domains: ['精细动作', '认知'],
+    materials: ['大号软积木'],
+    duration: '5-10分钟',
+    desc: '教室宝叠积木，锻炼手眼协调和空间认知',
+    steps: [
+      '给宝宝2-3块大号软积木',
+      '示范叠一块积木',
+      '"你来试试"',
+      '让宝宝尝试叠积木',
+      '倒了也没关系，继续玩'
+    ],
+    tip: '用大号软积木，避免小块积木误吞风险。'
+  },
+  {
+    id: 'finger_food',
+    name: '手指食物',
+    icon: '🍠',
+    ageRange: '8-12个月',
+    domains: ['精细动作', '认知'],
+    materials: ['煮软的胡萝卜条', '香蕉段', '溶豆'],
+    duration: '10-15分钟',
+    desc: '让宝宝自己用手指捏取食物吃，锻炼钳形抓握',
+    steps: [
+      '准备煮软的胡萝卜条或溶豆',
+      '放在宝宝面前的高脚餐盘上',
+      '让宝宝自己用拇指食指捏起来吃',
+      '"宝宝自己吃，真棒"',
+      '不要催促，让宝宝慢慢探索'
+    ],
+    tip: '确保食物软烂、大小安全，全程看护防止噎呛。'
+  },
+  {
+    id: 'object_permanence',
+    name: '找玩具',
+    icon: '🔍',
+    ageRange: '6-10个月',
+    domains: ['认知', '精细动作'],
+    materials: ['毛巾', '小玩具'],
+    duration: '3-5分钟',
+    desc: '把玩具藏在毛巾下让宝宝找，理解物体恒存性',
+    steps: [
+      '让宝宝看到你把玩具放在毛巾下',
+      '"玩具去哪了？"',
+      '鼓励宝宝掀开毛巾找',
+      '找到后说"找到了！真棒"',
+      '换不同位置和物品增加难度'
+    ],
+    tip: '开始时让玩具露出一角，逐渐增加隐藏难度。'
+  },
+  {
+    id: 'pull_to_stand',
+    name: '扶站练习',
+    icon: '🧍',
+    ageRange: '7-12个月',
+    domains: ['大运动'],
+    materials: ['稳固的沙发', '矮桌'],
+    duration: '3-5分钟',
+    desc: '引导宝宝扶着家具站立，锻炼下肢力量和平衡',
+    steps: [
+      '在沙发旁放宝宝喜欢的玩具',
+      '让宝宝趴着或坐着靠近沙发',
+      '鼓励宝宝抓着沙发站起来',
+      '"看，宝宝站起来了！"',
+      '短时间练习，逐渐延长'
+    ],
+    tip: '确保家具稳固不会倒，全程在旁保护。'
+  },
+  {
+    id: 'shape_sorter',
+    name: '形状配对',
+    icon: '⭕',
+    ageRange: '10-12个月',
+    domains: ['认知', '精细动作'],
+    materials: ['形状配对盒'],
+    duration: '5-10分钟',
+    desc: '让宝宝把不同形状的积木放入对应孔中，锻炼认知',
+    steps: [
+      '准备一个简单的形状配对盒',
+      '示范把圆形积木放入圆孔',
+      '"放进去"',
+      '让宝宝尝试',
+      '从圆形开始，逐渐增加难度'
+    ],
+    tip: '10-12个月从圆形开始，不要太复杂的形状。'
+  },
+  {
+    id: 'first_steps',
+    name: '学步游戏',
+    icon: '👣',
+    ageRange: '11-12个月',
+    domains: ['大运动', '情感'],
+    materials: ['无'],
+    duration: '3-5分钟',
+    desc: '在一步远处接应宝宝，鼓励独立迈步',
+    steps: [
+      '让宝宝扶着沙发站立',
+      '家长在一步远处蹲下伸手',
+      '"来妈妈这里"',
+      '鼓励宝宝松手走一步',
+      '从1步逐渐增加到2-3步'
+    ],
+    tip: '不要急着拉宝宝走，让宝宝自己主动迈步。不穿鞋袜在防滑垫上练习。'
+  }
+];
+
+/* ---------- 育儿知识小贴士库 ---------- */
+const KNOWLEDGE_TIPS = [
+  { icon: '😴', title: '睡眠管理', text: '0-6个月宝宝每天需要14-17小时睡眠，6-12个月约12-16小时。规律作息有助于大脑发育，建立固定的睡前仪式。' },
+  { icon: '🍼', title: '喂养指导', text: '6个月内纯母乳或配方奶喂养，不需要额外喂水。6个月后开始添加辅食，从单一到多样，从稀到稠。' },
+  { icon: '🛡️', title: '安全须知', text: '所有玩具确保无小零件脱落，避免窒息风险。俯卧练习时全程看护。睡眠时仰卧最安全。' },
+  { icon: '👁️', title: '视觉发育', text: '0-3个月对黑白图案敏感，4个月开始分辨彩色，6个月视力接近成人。高对比度图案和人脸是最佳视觉刺激。' },
+  { icon: '🧠', title: '大脑发育', text: '0-3岁是大脑发育黄金期，丰富的感官刺激和温暖的互动回应是最好"营养"。不需要昂贵的玩具。' },
+  { icon: '💕', title: '情感联结', text: '及时回应宝宝的哭声不会"宠坏"宝宝，反而建立安全依恋。安全感是探索世界的基础。' },
+  { icon: '📱', title: '屏幕时间', text: '2岁以下不建议让宝宝直接看屏幕。本应用供家长使用，训练时由家长操作，宝宝看实物卡片和玩具。' },
+  { icon: '🗣️', title: '语言发展', text: '多和宝宝说话！描述日常活动、模仿宝宝发声、唱儿歌。语言输入的量直接决定语言发育速度。' },
+  { icon: '🤱', title: '俯卧时间', text: '清醒时的俯卧练习对头部控制、翻身和后续爬行至关重要。从每天几次、每次1-2分钟开始。' },
+  { icon: '😊', title: '社交微笑', text: '2-3个月出现社交性微笑，4个月能主动用微笑吸引注意。多对宝宝笑，回应宝宝的微笑。' },
+  { icon: '🤱', title: '辅食添加', text: '6个月开始添加辅食，从铁强化米粉开始，每次只加一种新食物，观察3-5天无过敏再加下一种。' },
+  { icon: '🦷', title: '出牙护理', text: '多数宝宝6-10个月开始出牙，出牙时可能流口水、烦躁。可以用牙胶缓解不适，出牙后开始用纱布清洁。' },
+  { icon: '🚶', title: '运动发展', text: '0-12个月运动发展顺序：抬头→翻身→独坐→爬行→扶站→独走。每个宝宝节奏不同，不必攀比。' },
+  { icon: '📚', title: '亲子阅读', text: '从出生就可以开始亲子阅读。选择色彩鲜艳的厚纸板书，每天固定时间读几分钟，培养阅读习惯。' },
+  { icon: '🎵', title: '音乐启蒙', text: '儿歌和音乐促进大脑发育。家长面对面唱比播放录音效果好，配合肢体动作效果更佳。' }
+];
+
+</script>
+
+<script>
+/* ============================================================
+   第四部分：路由 Router
+   ============================================================ */
+const Router = {
+  currentView: 'focus',
+
+  go(view) {
+    // 停止专注力训练
+    if (this.currentView === 'focus' && view !== 'focus') {
+      FocusModule.stop();
+    }
+
+    this.currentView = view;
+
+    // 切换视图
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + view).classList.add('active');
+
+    // 切换导航
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelector(`.nav-item[data-view="${view}"]`).classList.add('active');
+
+    // 更新hash
+    window.location.hash = view;
+
+    // 刷新对应模块数据
+    if (view === 'learn') LearnModule.render();
+    if (view === 'growth') GrowthModule.render();
+    if (view === 'interact') InteractModule.render();
+
+    Utils.vibrate(5);
+  },
+
+  init() {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && ['focus','learn','growth','interact'].includes(hash)) {
+      this.go(hash);
+    }
+  }
+};
+
+/* ============================================================
+   第五部分：App 主应用
+   ============================================================ */
+const App = {
+  selectedGender: 'female',
+
+  init() {
+    DataManager.load();
+    const profile = DataManager.getBabyProfile();
+
+    // 首次使用引导
+    if (!profile.birthDate) {
+      this.showSetup();
+      // 默认设置出生日期为4个月前
+      const fourMonthsAgo = new Date();
+      fourMonthsAgo.setMonth(fourMonthsAgo.getMonth() - 4);
+      document.getElementById('setup-birthdate').value = this.formatDateInput(fourMonthsAgo);
+    } else {
+      this.updateHeaderAge();
+    }
+
+    // 初始化各模块
+    FocusModule.init();
+    LearnModule.init();
+    GrowthModule.init();
+    InteractModule.init();
+
+    // 路由初始化
+    Router.init();
+
+    // 设置事件监听
+    this.bindEvents();
+  },
+
+  formatDateInput(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  },
+
+  bindEvents() {
+    // 导航hash变化
+    window.addEventListener('hashchange', () => Router.init());
+
+    // 文件导入
+    document.getElementById('import-file').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        if (DataManager.importData(ev.target.result)) {
+          Utils.toast('数据导入成功');
+          this.init();
+          this.closeSettings();
+        } else {
+          Utils.toast('数据导入失败');
+        }
+      };
+      reader.readAsText(file);
+    });
+  },
+
+  showSetup() {
+    document.getElementById('modal-setup').classList.add('show');
+  },
+
+  selectGender(gender) {
+    this.selectedGender = gender;
+    document.querySelectorAll('.gender-option').forEach(el => {
+      el.classList.toggle('selected', el.dataset.gender === gender);
+    });
+  },
+
+  saveSetup() {
+    const nickname = document.getElementById('setup-nickname').value.trim() || '橙子';
+    const birthDate = document.getElementById('setup-birthdate').value;
+
+    if (!birthDate) {
+      Utils.toast('请选择出生日期');
+      return;
+    }
+
+    const profile = DataManager.getBabyProfile();
+    profile.nickname = nickname;
+    profile.birthDate = birthDate;
+    profile.gender = this.selectedGender;
+    DataManager.save();
+
+    document.getElementById('modal-setup').classList.remove('show');
+    this.updateHeaderAge();
+    LearnModule.render();
+    GrowthModule.render();
+    Utils.toast('设置成功，开始使用吧！');
+  },
+
+  updateHeaderAge() {
+    const age = DataManager.calcMonthAge();
+    document.getElementById('header-age').textContent = age.months > 0 ? `${age.months}个月` : `${age.days}天`;
+  },
+
+  openSettings() {
+    const profile = DataManager.getBabyProfile();
+    document.getElementById('settings-nickname').value = profile.nickname;
+    document.getElementById('settings-birthdate').value = profile.birthDate;
+    const settings = DataManager.getSettings();
+    document.getElementById('toggle-sound').classList.toggle('on', settings.soundEnabled);
+    document.getElementById('toggle-autoplay').classList.toggle('on', settings.autoPlayCards);
+    document.getElementById('modal-settings').classList.add('show');
+  },
+
+  closeSettings() {
+    document.getElementById('modal-settings').classList.remove('show');
+  },
+
+  saveSettings() {
+    const profile = DataManager.getBabyProfile();
+    profile.nickname = document.getElementById('settings-nickname').value.trim() || '橙子';
+    profile.birthDate = document.getElementById('settings-birthdate').value || profile.birthDate;
+    DataManager.save();
+    this.updateHeaderAge();
+    LearnModule.render();
+    this.closeSettings();
+    Utils.toast('设置已保存');
+  },
+
+  toggleSetting(key, toggleId) {
+    const settings = DataManager.getSettings();
+    settings[key] = !settings[key];
+    DataManager.save();
+    document.getElementById(toggleId).classList.toggle('on', settings[key]);
+  },
+
+  exportData() {
+    const data = DataManager.exportData();
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `橙子早教数据_${Utils.today()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    Utils.toast('数据已导出');
+  },
+
+  importData() {
+    document.getElementById('import-file').click();
+  },
+
+  clearData() {
+    if (confirm('确定要清除所有数据吗？此操作不可恢复。')) {
+      DataManager.clearAll();
+      this.init();
+      this.closeSettings();
+      Utils.toast('数据已清除');
+    }
+  }
+};
+
+</script>
+
+<script>
+/* ============================================================
+   第六部分：专注力训练模块 FocusModule
+   ============================================================ */
+const FocusModule = {
+  currentType: 'blackwhite',  // blackwhite | color | animation | sound
+  currentMode: 'static',      // static | tracking | auto
+  currentIndex: 0,
+  isPlaying: false,
+  timer: null,
+  elapsedTime: 0,
+  autoPlayTimer: null,
+  trackingAnim: null,
+  canvasAnim: null,
+  canvasAnimType: 0,
+  speed: 3,
+
+  init() {
+    this.renderSoundGrid();
+    this.render();
+    // 速度滑块
+    document.getElementById('speed-range').addEventListener('input', (e) => {
+      this.speed = parseInt(e.target.value);
+      if (this.currentType === 'animation' && this.isPlaying) {
+        this.startCanvasAnim();
+      }
+    });
+  },
+
+  switchType(type) {
+    this.stop();
+    this.currentType = type;
+    this.currentIndex = 0;
+
+    // 更新tab样式
+    document.querySelectorAll('.focus-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.focusType === type);
+    });
+
+    // 显示/隐藏不同元素
+    const soundGrid = document.getElementById('sound-grid');
+    const speedControl = document.getElementById('speed-control');
+    const modeRow = document.getElementById('focus-mode-row');
+    const controls = document.getElementById('focus-controls');
+    const display = document.getElementById('focus-display');
+
+    soundGrid.classList.add('hidden');
+    speedControl.classList.add('hidden');
+    modeRow.style.display = '';
+    controls.style.display = '';
+    display.style.display = '';
+
+    if (type === 'sound') {
+      soundGrid.classList.remove('hidden');
+      modeRow.style.display = 'none';
+      controls.style.display = 'none';
+      display.style.display = 'none';
+    } else if (type === 'animation') {
+      speedControl.classList.remove('hidden');
+      modeRow.style.display = 'none';
+    }
+
+    this.render();
+  },
+
+  switchMode(mode) {
+    this.currentMode = mode;
+    document.querySelectorAll('.focus-mode-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.mode === mode);
+    });
+
+    // 停止之前的动画
+    if (this.trackingAnim) {
+      cancelAnimationFrame(this.trackingAnim);
+      this.trackingAnim = null;
+    }
+
+    if (mode === 'tracking' && this.isPlaying) {
+      this.startTracking();
+    }
+  },
+
+  render() {
+    if (this.currentType === 'sound') return;
+
+    const display = document.getElementById('focus-card-display');
+    const canvasArea = document.getElementById('focus-canvas-area');
+    const counter = document.getElementById('focus-counter');
+
+    // 清除canvas动画
+    if (this.canvasAnim) {
+      cancelAnimationFrame(this.canvasAnim);
+      this.canvasAnim = null;
+    }
+    canvasArea.innerHTML = '<div class="focus-card-display" id="focus-card-display"></div>';
+    const cardDisplay = document.getElementById('focus-card-display');
+
+    if (this.currentType === 'blackwhite') {
+      const card = BLACKWHITE_CARDS[this.currentIndex];
+      cardDisplay.innerHTML = card.svg;
+      counter.textContent = `${this.currentIndex + 1}/${BLACKWHITE_CARDS.length}`;
+    } else if (this.currentType === 'color') {
+      const card = COLOR_CARDS[this.currentIndex];
+      cardDisplay.innerHTML = card.svg;
+      counter.textContent = `${this.currentIndex + 1}/${COLOR_CARDS.length}`;
+    } else if (this.currentType === 'animation') {
+      // 用canvas绘制动画
+      cardDisplay.innerHTML = '<canvas id="anim-canvas" width="400" height="400" style="width:100%;height:100%;border-radius:16px;"></canvas>';
+      counter.textContent = `${this.currentIndex + 1}/4`;
+      if (this.isPlaying) {
+        this.startCanvasAnim();
+      } else {
+        this.drawCanvasStatic();
+      }
+    }
+  },
+
+  drawCanvasStatic() {
+    const canvas = document.getElementById('anim-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 400, 400);
+    ctx.fillStyle = '#FAFAFA';
+    ctx.fillRect(0, 0, 400, 400);
+
+    const types = ['ball', 'face', 'light', 'bubble'];
+    const type = types[this.currentIndex % 4];
+
+    if (type === 'ball') {
+      ctx.beginPath();
+      ctx.arc(200, 200, 40, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFAB75';
+      ctx.fill();
+    } else if (type === 'face') {
+      ctx.fillStyle = '#FFDAC1';
+      ctx.beginPath();
+      ctx.arc(200, 200, 80, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#4A4A4A';
+      ctx.beginPath();
+      ctx.arc(175, 185, 10, 0, Math.PI * 2);
+      ctx.arc(225, 185, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#4A4A4A';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.arc(200, 210, 25, 0.2, Math.PI - 0.2);
+      ctx.stroke();
+    } else if (type === 'light') {
+      const grad = ctx.createRadialGradient(200, 200, 0, 200, 200, 40);
+      grad.addColorStop(0, '#FFE5B4');
+      grad.addColorStop(1, 'rgba(255,229,180,0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 400, 400);
+    } else if (type === 'bubble') {
+      for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.arc(80 + i * 60, 200, 25, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(183, 229, 215, 0.5)`;
+        ctx.fill();
+      }
+    }
+  },
+
+  startCanvasAnim() {
+    const canvas = document.getElementById('anim-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const types = ['ball', 'face', 'light', 'bubble'];
+    const type = types[this.currentIndex % 4];
+    const speedFactor = this.speed / 3;
+
+    let t = 0;
+    const animate = () => {
+      t += 0.016 * speedFactor;
+      ctx.clearRect(0, 0, 400, 400);
+      ctx.fillStyle = '#FAFAFA';
+      ctx.fillRect(0, 0, 400, 400);
+
+      if (type === 'ball') {
+        // 弹跳球
+        const x = 200 + 120 * Math.sin(t);
+        const y = 200 + 100 * Math.abs(Math.sin(t * 2));
+        // 球的渐变
+        const grad = ctx.createRadialGradient(x - 10, y - 10, 5, x, y, 40);
+        grad.addColorStop(0, '#FFDAC1');
+        grad.addColorStop(1, '#FFAB75');
+        ctx.beginPath();
+        ctx.arc(x, y, 40, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      } else if (type === 'face') {
+        // 移动笑脸
+        const x = 200 + 100 * Math.sin(t);
+        ctx.fillStyle = '#FFDAC1';
+        ctx.beginPath();
+        ctx.arc(x, 200, 70, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#4A4A4A';
+        ctx.beginPath();
+        ctx.arc(x - 25, 185, 10, 0, Math.PI * 2);
+        ctx.arc(x + 25, 185, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#4A4A4A';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(x, 210, 22, 0.2, Math.PI - 0.2);
+        ctx.stroke();
+      } else if (type === 'light') {
+        // 光点曲线轨迹
+        const cx = 200 + 120 * Math.sin(t * 1.5);
+        const cy = 200 + 80 * Math.sin(t * 3);
+        // 尾迹
+        for (let i = 0; i < 20; i++) {
+          const tt = t - i * 0.05;
+          const tx = 200 + 120 * Math.sin(tt * 1.5);
+          const ty = 200 + 80 * Math.sin(tt * 3);
+          const alpha = (20 - i) / 20 * 0.3;
+          ctx.beginPath();
+          ctx.arc(tx, ty, 20 - i * 0.8, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 173, 117, ${alpha})`;
+          ctx.fill();
+        }
+        // 光点本体
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 30);
+        grad.addColorStop(0, 'rgba(255,229,180,1)');
+        grad.addColorStop(1, 'rgba(255,229,180,0)');
+        ctx.beginPath();
+        ctx.arc(cx, cy, 30, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      } else if (type === 'bubble') {
+        // 气泡上升
+        for (let i = 0; i < 6; i++) {
+          const offset = i * 0.5;
+          const x = 60 + i * 55 + 20 * Math.sin(t * 2 + offset);
+          const y = 380 - ((t * 60 + i * 80) % 400);
+          const r = 15 + i * 3;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(183, 229, 215, 0.4)`;
+          ctx.fill();
+          ctx.strokeStyle = `rgba(91, 184, 158, 0.3)`;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+      }
+
+      if (this.isPlaying) {
+        this.canvasAnim = requestAnimationFrame(animate);
+      }
+    };
+    animate();
+  },
+
+  startTracking() {
+    const card = document.getElementById('focus-card-display');
+    if (!card) return;
+    let dir = 1;
+    let pos = 0;
+    const speedFactor = this.speed / 3;
+    const move = () => {
+      pos += dir * 0.5 * speedFactor;
+      if (pos > 30) { dir = -1; }
+      if (pos < -30) { dir = 1; }
+      if (card && card.firstElementChild) {
+        card.firstElementChild.style.transform = `translateX(${pos}px)`;
+      }
+      if (this.currentMode === 'tracking' && this.isPlaying) {
+        this.trackingAnim = requestAnimationFrame(move);
+      }
+    };
+    move();
+  },
+
+  togglePlay() {
+    if (this.isPlaying) {
+      this.stop();
+    } else {
+      this.play();
+    }
+  },
+
+  play() {
+    this.isPlaying = true;
+    document.getElementById('focus-play-btn').textContent = '⏸';
+    this.startTimer();
+
+    if (this.currentType === 'animation') {
+      this.startCanvasAnim();
+    } else if (this.currentMode === 'tracking') {
+      this.startTracking();
+    } else if (this.currentMode === 'auto' && (this.currentType === 'blackwhite' || this.currentType === 'color')) {
+      this.startAutoPlay();
+    }
+  },
+
+  stop() {
+    this.isPlaying = false;
+    document.getElementById('focus-play-btn').textContent = '▶';
+    this.stopTimer();
+    if (this.trackingAnim) { cancelAnimationFrame(this.trackingAnim); this.trackingAnim = null; }
+    if (this.canvasAnim) { cancelAnimationFrame(this.canvasAnim); this.canvasAnim = null; }
+    if (this.autoPlayTimer) { clearTimeout(this.autoPlayTimer); this.autoPlayTimer = null; }
+    Utils.stopAllSounds();
+
+    // 记录训练
+    if (this.elapsedTime > 5) {
+      DataManager.addFocusSession({
+        type: this.currentType,
+        cardIndex: this.currentIndex,
+        mode: this.currentMode,
+        duration: this.elapsedTime
+      });
+      this.elapsedTime = 0;
+      this.updateTimerDisplay();
+    }
+  },
+
+  startTimer() {
+    this.elapsedTime = 0;
+    this.timer = setInterval(() => {
+      this.elapsedTime++;
+      this.updateTimerDisplay();
+      // 2分钟提醒
+      if (this.elapsedTime >= 120) {
+        this.stop();
+        Utils.toast('训练时间到了，让橙子休息一下吧~');
+      }
+    }, 1000);
+  },
+
+  stopTimer() {
+    if (this.timer) { clearInterval(this.timer); this.timer = null; }
+  },
+
+  updateTimerDisplay() {
+    const min = String(Math.floor(this.elapsedTime / 60)).padStart(2, '0');
+    const sec = String(this.elapsedTime % 60).padStart(2, '0');
+    document.getElementById('focus-timer-text').textContent = `${min}:${sec}`;
+  },
+
+  startAutoPlay() {
+    const cards = this.currentType === 'blackwhite' ? BLACKWHITE_CARDS : COLOR_CARDS;
+    const duration = DataManager.getSettings().cardDuration * 1000;
+    this.autoPlayTimer = setTimeout(() => {
+      if (this.isPlaying && this.currentMode === 'auto') {
+        this.next();
+        this.startAutoPlay();
+      }
+    }, duration);
+  },
+
+  next() {
+    const cards = this.currentType === 'blackwhite' ? BLACKWHITE_CARDS : COLOR_CARDS;
+    const max = this.currentType === 'animation' ? 4 : cards.length;
+    this.currentIndex = (this.currentIndex + 1) % max;
+    this.render();
+    Utils.vibrate(5);
+  },
+
+  prev() {
+    const cards = this.currentType === 'blackwhite' ? BLACKWHITE_CARDS : COLOR_CARDS;
+    const max = this.currentType === 'animation' ? 4 : cards.length;
+    this.currentIndex = (this.currentIndex - 1 + max) % max;
+    this.render();
+    Utils.vibrate(5);
+  },
+
+  renderSoundGrid() {
+    const grid = document.getElementById('sound-grid');
+    const sounds = [
+      { id: 'bell', icon: '🔔', name: '摇铃声', desc: '清脆悦耳', action: () => Utils.playBell() },
+      { id: 'dingdong', icon: '🎵', name: '叮咚声', desc: '和谐音程', action: () => Utils.playDingDong() },
+      { id: 'whitenoise', icon: '🌬️', name: '白噪音', desc: '安抚情绪', action: (btn) => this.toggleContinuousSound('whitenoise', btn) },
+      { id: 'rain', icon: '🌧️', name: '雨声', desc: '自然放松', action: (btn) => this.toggleContinuousSound('rain', btn) },
+      { id: 'note_c', icon: '🎼', name: 'Do (C)', desc: '523Hz', action: () => Utils.playNote(523.25, 1) },
+      { id: 'note_e', icon: '🎶', name: 'Mi (E)', desc: '659Hz', action: () => Utils.playNote(659.25, 1) }
+    ];
+
+    grid.innerHTML = sounds.map(s => `
+      <div class="sound-card" data-sound-id="${s.id}" onclick="FocusModule.playSound('${s.id}')">
+        <div class="sound-icon">${s.icon}</div>
+        <div class="sound-name">${s.name}</div>
+        <div class="sound-desc">${s.desc}</div>
+      </div>
+    `).join('');
+
+    this._sounds = sounds;
+  },
+
+  playSound(id) {
+    const sound = this._sounds.find(s => s.id === id);
+    if (!sound) return;
+
+    if (id === 'whitenoise' || id === 'rain') {
+      const btn = document.querySelector(`[data-sound-id="${id}"]`);
+      sound.action(btn);
+    } else {
+      sound.action();
+      Utils.vibrate(10);
+    }
+  },
+
+  currentSound: null,
+  toggleContinuousSound(type, btn) {
+    // 停止之前的声音
+    document.querySelectorAll('.sound-card').forEach(c => c.classList.remove('playing'));
+    Utils.stopAllSounds();
+
+    if (this.currentSound === type) {
+      this.currentSound = null;
+      return;
+    }
+
+    this.currentSound = type;
+    if (btn) btn.classList.add('playing');
+
+    if (type === 'whitenoise') {
+      Utils.playWhiteNoise();
+    } else if (type === 'rain') {
+      Utils.playRain();
+    }
+  }
+};
+
+</script>
+
+<script>
+/* ============================================================
+   第七部分：早教启蒙模块 LearnModule
+   ============================================================ */
+const LearnModule = {
+  expandedDomain: null,
+
+  init() {
+    this.render();
+  },
+
+  render() {
+    const age = DataManager.calcMonthAge();
+    document.getElementById('learn-age-display').textContent = age.text;
+
+    // 发育特点（根据月龄动态获取）
+    const summary = document.getElementById('dev-summary');
+    const devData = getDevSummaryForAge(age.months);
+    summary.innerHTML = devData.map(item => `
+      <div class="dev-item">
+        <span class="dev-label">${item.label}</span>：${item.text}
+      </div>
+    `).join('');
+
+    // 四大领域卡片（根据月龄动态获取）
+    const domainsEl = document.getElementById('learn-domains');
+    const domains = getDomainsForAge(age.months);
+    domainsEl.innerHTML = domains.map(d => `
+      <div class="domain-card card-tap" onclick="LearnModule.toggleDomain('${d.id}')">
+        <div class="domain-icon">${d.icon}</div>
+        <div class="domain-name">${d.name}</div>
+        <div class="domain-desc">${d.desc}</div>
+      </div>
+    `).join('');
+  },
+
+  toggleDomain(id) {
+    const detail = document.getElementById('domain-detail');
+    if (this.expandedDomain === id) {
+      detail.innerHTML = '';
+      this.expandedDomain = null;
+      return;
+    }
+    this.expandedDomain = id;
+    const age = DataManager.calcMonthAge();
+    const domains = getDomainsForAge(age.months);
+    const domain = domains.find(d => d.id === id);
+
+    detail.innerHTML = `
+      <div class="card" style="animation:slideUp 0.3s ease;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span style="font-size:24px;">${domain.icon}</span>
+          <span style="font-size:18px;font-weight:600;">${domain.name}</span>
+        </div>
+        <div style="font-size:13px;color:#8B8B8B;margin-bottom:16px;">${domain.summary}</div>
+
+        ${domain.trainings.map((t, i) => `
+          <div class="training-item">
+            <div class="training-header">
+              <span class="training-name">${i+1}. ${t.name}</span>
+            </div>
+            <div class="training-steps">
+              ${t.steps.map((s, j) => `
+                <div class="step">
+                  <span class="step-num">${j+1}.</span>
+                  <span>${s}</span>
+                </div>
+              `).join('')}
+            </div>
+            <div style="font-size:12px;color:#E8857F;background:#FFF5F4;padding:8px 12px;border-radius:8px;">
+              💡 ${t.tips}
+            </div>
+          </div>
+        `).join('')}
+
+        <div class="milestone-list">
+          <div class="milestone-title">🎯 发育里程碑对照</div>
+          ${domain.milestones.map(m => `<div class="milestone-item">${m}</div>`).join('')}
+          <div style="font-size:11px;color:#B0B0B0;margin-top:8px;">
+            * 以上为大部分宝宝4个月时能达到的标准，每个宝宝发育节奏不同，不必焦虑。
+          </div>
+        </div>
+
+        <button class="btn btn-pink btn-block btn-sm" style="margin-top:12px;" onclick="LearnModule.checkIn('${id}')">
+          ✅ 完成今日训练打卡
+        </button>
+      </div>
+    `;
+  },
+
+  checkIn(domainId) {
+    const today = Utils.today();
+    let checkin = DataManager.getCheckIn(today);
+    if (!checkin) {
+      checkin = { date: today, items: [], duration: 0, mood: 'happy' };
+    }
+    // 映射领域到打卡项
+    const map = { motor: 'tummy_time', fine: 'grasp', language: 'language', cognitive: 'visual' };
+    const itemId = map[domainId];
+    if (itemId && !checkin.items.includes(itemId)) {
+      checkin.items.push(itemId);
+      DataManager.addCheckIn(checkin);
+      Utils.toast('已记录今日训练打卡 ✅');
+    } else {
+      Utils.toast('今天已经打过卡了');
+    }
+  }
+};
+
+</script>
+
+<script>
+/* ============================================================
+   第八部分：成长记录模块 GrowthModule
+   ============================================================ */
+const GrowthModule = {
+  currentTab: 'milestone',
+  selectedCheckinItems: [],
+
+  init() {
+    this.render();
+  },
+
+  switchTab(tab) {
+    this.currentTab = tab;
+    document.querySelectorAll('.growth-sub-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.growthTab === tab);
+    });
+    document.querySelectorAll('.growth-section').forEach(s => {
+      s.classList.toggle('active', s.id === 'growth-' + tab);
+    });
+  },
+
+  render() {
+    this.renderMilestones();
+    this.renderMeasurement();
+    this.renderSkills();
+    this.renderCheckin();
+  },
+
+  // ---- 里程碑 ----
+  renderMilestones() {
+    const list = document.getElementById('milestone-list');
+    const age = DataManager.calcMonthAge();
+    const currentMonths = age.months;
+    // 显示当前月龄及之前2个月龄的里程碑（让家长可以看到已过的和即将到来的）
+    const showMaxAge = currentMonths + 2;
+
+    list.innerHTML = MILESTONES_DATA.map(cat => {
+      // 按月龄过滤：显示 monthAge <= 当前月龄+2 的项目
+      const filteredItems = cat.items.filter(item => item.monthAge <= showMaxAge);
+      if (filteredItems.length === 0) return '';
+
+      return `
+      <div class="milestone-category">
+        <div class="milestone-category-header">${cat.categoryName}</div>
+        ${filteredItems.map(item => {
+          const record = DataManager.getMilestone(item.id);
+          const done = record && record.achieved;
+          const isUpcoming = item.monthAge > currentMonths;
+          return `
+            <div class="milestone-check-item ${done ? 'done' : ''}" style="${isUpcoming ? 'opacity:0.5;' : ''}" onclick="GrowthModule.toggleMilestone('${item.id}')">
+              <div class="milestone-checkbox">${done ? '✓' : ''}</div>
+              <div class="milestone-content">
+                <div class="milestone-text">${item.text}${isUpcoming ? ' <span style="font-size:11px;color:#B0B0B0;">(' + item.monthAge + '月龄)</span>' : ''}</div>
+                <div class="milestone-date">${done && record.achievedDate ? '完成于 ' + Utils.formatDate(record.achievedDate) : (isUpcoming ? '即将到来' : '点击勾选')}</div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;}).join('');
+  },
+
+  toggleMilestone(id) {
+    const record = DataManager.getMilestone(id);
+    const achieved = !(record && record.achieved);
+    DataManager.toggleMilestone(id, achieved);
+    this.renderMilestones();
+    Utils.vibrate(10);
+    if (achieved) Utils.toast('里程碑达成！🎉');
+  },
+
+  // ---- 身高体重 ----
+  renderMeasurement() {
+    const records = DataManager.data.growthRecords;
+    const list = document.getElementById('measurement-list');
+
+    // WHO参考范围（根据月龄动态获取）
+    const gender = DataManager.getBabyProfile().gender || 'female';
+    const age = DataManager.calcMonthAge();
+    const std = getWHOForAge(age.months, gender);
+
+    if (records.length === 0) {
+      list.innerHTML = `<div class="empty-state"><div class="empty-icon">📏</div><div>还没有记录<br>填写上方表单开始记录吧</div></div>`;
+    } else {
+      const sorted = [...records].sort((a,b) => new Date(b.date) - new Date(a.date));
+      list.innerHTML = sorted.map(r => `
+        <div class="card" style="padding:12px 16px;display:flex;justify-content:space-around;text-align:center;">
+          <div>
+            <div style="font-size:12px;color:#B0B0B0;">日期</div>
+            <div style="font-size:14px;font-weight:500;">${Utils.formatDate(r.date)}</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#B0B0B0;">身高</div>
+            <div style="font-size:14px;font-weight:500;">${r.height || '-'}cm</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#B0B0B0;">体重</div>
+            <div style="font-size:14px;font-weight:500;">${r.weight || '-'}kg</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#B0B0B0;">头围</div>
+            <div style="font-size:14px;font-weight:500;">${r.headCircumference || '-'}cm</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 绘制成长曲线
+    this.drawGrowthChart(records, std);
+  },
+
+  drawGrowthChart(records, std) {
+    const canvas = document.getElementById('growth-chart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // 背景
+    ctx.fillStyle = '#F5F7FE';
+    ctx.fillRect(0, 0, W, H);
+
+    if (records.length === 0) {
+      ctx.fillStyle = '#B0B0B0';
+      ctx.font = '14px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('暂无数据，记录后显示成长曲线', W/2, H/2);
+      return;
+    }
+
+    const padding = { left: 40, right: 20, top: 20, bottom: 30 };
+    const chartW = W - padding.left - padding.right;
+    const chartH = H - padding.top - padding.bottom;
+
+    // 找到数据范围
+    const weights = records.map(r => r.weight).filter(Boolean);
+    if (weights.length === 0) return;
+    const minW = Math.min(...weights, std.weight.min) - 1;
+    const maxW = Math.max(...weights, std.weight.max) + 1;
+
+    // 画WHO参考范围
+    const yMin = padding.top + chartH * (1 - (std.weight.max - minW) / (maxW - minW));
+    const yMax = padding.top + chartH * (1 - (std.weight.min - minW) / (maxW - minW));
+    ctx.fillStyle = 'rgba(199, 206, 234, 0.2)';
+    ctx.fillRect(padding.left, yMin, chartW, yMax - yMin);
+
+    // 画中位线
+    const y50 = padding.top + chartH * (1 - (std.weight.p50 - minW) / (maxW - minW));
+    ctx.strokeStyle = 'rgba(123, 137, 199, 0.4)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(padding.left, y50);
+    ctx.lineTo(padding.left + chartW, y50);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // 画数据折线
+    const sorted = [...records].sort((a,b) => new Date(a.date) - new Date(b.date));
+    const n = sorted.length;
+    ctx.strokeStyle = '#7B89C7';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    sorted.forEach((r, i) => {
+      const x = padding.left + (n === 1 ? chartW/2 : (chartW * i / (n - 1)));
+      const y = padding.top + chartH * (1 - (r.weight - minW) / (maxW - minW));
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // 画数据点
+    sorted.forEach((r, i) => {
+      const x = padding.left + (n === 1 ? chartW/2 : (chartW * i / (n - 1)));
+      const y = padding.top + chartH * (1 - (r.weight - minW) / (maxW - minW));
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#7B89C7';
+      ctx.fill();
+    });
+
+    // 标题
+    ctx.fillStyle = '#8B8B8B';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('体重(kg)', padding.left, 14);
+    ctx.textAlign = 'right';
+    ctx.fillText('WHO参考范围(阴影)', W - padding.right, 14);
+  },
+
+  addMeasurement() {
+    const height = parseFloat(document.getElementById('input-height').value);
+    const weight = parseFloat(document.getElementById('input-weight').value);
+    const head = parseFloat(document.getElementById('input-head').value);
+
+    if (!height && !weight && !head) {
+      Utils.toast('请至少填写一项数据');
+      return;
+    }
+
+    DataManager.addGrowthRecord({
+      height: height || null,
+      weight: weight || null,
+      headCircumference: head || null
+    });
+
+    document.getElementById('input-height').value = '';
+    document.getElementById('input-weight').value = '';
+    document.getElementById('input-head').value = '';
+    this.renderMeasurement();
+    Utils.toast('记录已保存 ✅');
+  },
+
+  // ---- 新技能 ----
+  renderSkills() {
+    const skills = DataManager.data.skillRecords;
+    const list = document.getElementById('skill-list');
+
+    if (skills.length === 0) {
+      list.innerHTML = `<div class="empty-state"><div class="empty-icon">✨</div><div>还没有记录<br>橙子学会新技能时来记录吧</div></div>`;
+      return;
+    }
+
+    const iconMap = { motor: '🤸', fine: '✋', language: '🗣️', cognitive: '🧠', social: '💛', other: '⭐' };
+    const colorMap = {
+      motor: 'background:#FFB7B2', fine: 'background:#B9E5D7',
+      language: 'background:#C7CEEA', cognitive: 'background:#FFDAC1',
+      social: 'background:#FFE5B4', other: 'background:#E2ECE9'
+    };
+
+    list.innerHTML = skills.map(s => `
+      <div class="skill-timeline-item">
+        <div class="skill-icon" style="${colorMap[s.category] || colorMap.other}">
+          ${iconMap[s.category] || '⭐'}
+        </div>
+        <div class="skill-body">
+          <div class="skill-desc">${s.description}</div>
+          <div class="skill-date">${Utils.formatDate(s.date)}</div>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  addSkill() {
+    const category = document.getElementById('skill-category').value;
+    const desc = document.getElementById('skill-desc').value.trim();
+
+    if (!desc) {
+      Utils.toast('请描述新技能');
+      return;
+    }
+
+    DataManager.addSkillRecord({ category, description: desc });
+    document.getElementById('skill-desc').value = '';
+    this.renderSkills();
+    Utils.toast('新技能已记录 ✨');
+  },
+
+  // ---- 每日打卡 ----
+  renderCheckin() {
+    const records = DataManager.data.checkInRecords;
+
+    // 统计
+    const now = new Date();
+    const weekStart = new Date(now);
+    weekStart.setDate(now.getDate() - now.getDay());
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+    const weekCount = records.filter(r => new Date(r.date) >= weekStart).length;
+    const monthCount = records.filter(r => new Date(r.date) >= monthStart).length;
+
+    // 连续打卡
+    let streak = 0;
+    const checkDate = new Date();
+    for (;;) {
+      const ds = `${checkDate.getFullYear()}-${String(checkDate.getMonth()+1).padStart(2,'0')}-${String(checkDate.getDate()).padStart(2,'0')}`;
+      if (records.some(r => r.date === ds)) {
+        streak++;
+        checkDate.setDate(checkDate.getDate() - 1);
+      } else {
+        break;
+      }
+    }
+
+    document.getElementById('stat-week').textContent = weekCount;
+    document.getElementById('stat-month').textContent = monthCount;
+    document.getElementById('stat-streak').textContent = streak;
+
+    // 日历
+    const grid = document.getElementById('checkin-grid');
+    const today = Utils.today();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay();
+
+    let html = '';
+    ['日','一','二','三','四','五','六'].forEach(d => {
+      html += `<div style="text-align:center;font-size:11px;color:#B0B0B0;padding:4px 0;">${d}</div>`;
+    });
+    for (let i = 0; i < firstDay; i++) {
+      html += '<div></div>';
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const ds = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const done = records.some(r => r.date === ds);
+      const isToday = ds === today;
+      html += `<div class="checkin-day ${done ? 'done' : ''} ${isToday ? 'today' : ''}">${d}</div>`;
+    }
+    grid.innerHTML = html;
+
+    // 今日打卡项目
+    const todayRecord = DataManager.getCheckIn(today);
+    this.selectedCheckinItems = todayRecord ? [...todayRecord.items] : [];
+
+    const itemsEl = document.getElementById('checkin-items');
+    itemsEl.innerHTML = CHECKIN_ITEMS.map(item => `
+      <div class="checkin-item ${this.selectedCheckinItems.includes(item.id) ? 'selected' : ''}"
+           onclick="GrowthModule.toggleCheckinItem('${item.id}')">
+        ${item.name}
+      </div>
+    `).join('');
+
+    if (todayRecord) {
+      document.getElementById('checkin-mood').value = todayRecord.mood || 'happy';
+    }
+  },
+
+  toggleCheckinItem(id) {
+    const idx = this.selectedCheckinItems.indexOf(id);
+    if (idx >= 0) {
+      this.selectedCheckinItems.splice(idx, 1);
+    } else {
+      this.selectedCheckinItems.push(id);
+    }
+    // 更新UI
+    document.querySelectorAll('#checkin-items .checkin-item').forEach((el, i) => {
+      el.classList.toggle('selected', this.selectedCheckinItems.includes(CHECKIN_ITEMS[i].id));
+    });
+  },
+
+  saveCheckin() {
+    if (this.selectedCheckinItems.length === 0) {
+      Utils.toast('请至少选择一个训练项目');
+      return;
+    }
+    const mood = document.getElementById('checkin-mood').value;
+    DataManager.addCheckIn({
+      items: this.selectedCheckinItems,
+      duration: this.selectedCheckinItems.length * 3,
+      mood: mood
+    });
+    this.renderCheckin();
+    Utils.toast('打卡成功！坚持就是胜利 💪');
+  }
+};
+
+</script>
+
+<script>
+/* ============================================================
+   第九部分：亲子互动模块 InteractModule
+   ============================================================ */
+const InteractModule = {
+  expandedGame: null,
+
+  init() {
+    this.render();
+  },
+
+  render() {
+    this.renderKnowledge();
+    this.renderWeeklyGames();
+    this.renderAllGames();
+  },
+
+  renderKnowledge() {
+    const card = document.getElementById('knowledge-card');
+    // 根据日期选择今日知识
+    const day = new Date().getDate();
+    const tip = KNOWLEDGE_TIPS[day % KNOWLEDGE_TIPS.length];
+    card.innerHTML = `
+      <div class="knowledge-icon">${tip.icon}</div>
+      <div class="knowledge-title">${tip.title}</div>
+      <div class="knowledge-text">${tip.text}</div>
+    `;
+  },
+
+  renderWeeklyGames() {
+    const week = DataManager.calcWeekAge();
+    const age = DataManager.calcMonthAge();
+    const months = age.months;
+    const container = document.getElementById('weekly-games');
+
+    // 筛选适合当前月龄的游戏
+    const ageGames = GAMES_DATA.filter(g => {
+      const range = g.ageRange;
+      const match = range.match(/(\d+)-(\d+)个月/);
+      if (match) {
+        const min = parseInt(match[1]);
+        const max = parseInt(match[2]);
+        return months >= min && months <= max;
+      }
+      // "0-12个月" 等全月龄游戏
+      return true;
+    });
+
+    // 按周龄轮换选择5个游戏
+    const pool = ageGames.length >= 5 ? ageGames : GAMES_DATA;
+    const startIndex = (week - 1) * 5 % pool.length;
+    const weekly = [];
+    for (let i = 0; i < Math.min(5, pool.length); i++) {
+      weekly.push(pool[(startIndex + i) % pool.length]);
+    }
+
+    container.innerHTML = `
+      <div style="font-size:12px;color:#8B8B8B;margin-bottom:12px;">
+        第${week}周 · 适合橙子当前月龄（${age.text}）
+      </div>
+      ${weekly.map(g => this.renderGameCard(g)).join('')}
+    `;
+  },
+
+  renderAllGames() {
+    const container = document.getElementById('all-games');
+    const age = DataManager.calcMonthAge();
+    const months = age.months;
+
+    // 按是否适合当前月龄排序，适合的排前面
+    const sorted = [...GAMES_DATA].sort((a, b) => {
+      const aMatch = this.isGameForAge(a, months);
+      const bMatch = this.isGameForAge(b, months);
+      if (aMatch && !bMatch) return -1;
+      if (!aMatch && bMatch) return 1;
+      return 0;
+    });
+
+    container.innerHTML = sorted.map(g => this.renderGameCard(g, months)).join('');
+  },
+
+  isGameForAge(game, months) {
+    const match = game.ageRange.match(/(\d+)-(\d+)个月/);
+    if (match) {
+      const min = parseInt(match[1]);
+      const max = parseInt(match[2]);
+      return months >= min && months <= max;
+    }
+    return true;
+  },
+
+  renderGameCard(game, months) {
+    const isFav = DataManager.isFavorite(game.id);
+    const isPlayed = DataManager.isGamePlayed(game.id);
+    const ageMatch = months !== undefined ? this.isGameForAge(game, months) : true;
+    const domainTags = game.domains.map(d => {
+      const tagClass = { '视觉':'tag-mint', '听觉':'tag-sky', '触觉':'tag-peach', '大运动':'tag-pink', '精细动作':'tag-mint', '语言':'tag-sky', '认知':'tag-peach', '社交':'tag-pink', '情感':'tag-peach' }[d] || 'tag-gray';
+      return `<span class="tag ${tagClass}">${d}</span>`;
+    }).join('');
+
+    const isExpanded = this.expandedGame === game.id;
+
+    return `
+      <div class="game-card" style="${!ageMatch ? 'opacity:0.6;' : ''}">
+        <div class="game-header" onclick="InteractModule.toggleGame('${game.id}')">
+          <span class="game-name">${game.icon} ${game.name}</span>
+          <span style="font-size:18px;color:#B0B0B0;">${isExpanded ? '▴' : '▾'}</span>
+        </div>
+        <div class="game-tags">${domainTags}${!ageMatch ? '<span class="tag tag-gray">暂不适合</span>' : '<span class="tag tag-mint">适合当前</span>'}</div>
+        <div class="game-desc">${game.desc}</div>
+        <div class="game-meta">
+          <span>📅 ${game.ageRange}</span>
+          <span>⏱️ ${game.duration}</span>
+          ${isPlayed ? '<span style="color:#95D5B2;">✓ 已玩过</span>' : ''}
+        </div>
+        <div class="game-detail ${isExpanded ? 'show' : ''}" id="game-detail-${game.id}">
+          <div class="detail-section">
+            <div class="detail-label">📝 玩法步骤</div>
+            <div class="step-list">
+              ${game.steps.map((s, i) => `
+                <div class="step">
+                  <span class="step-num">${i+1}.</span>
+                  <span>${s}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="detail-section">
+            <div class="detail-label">🧰 所需材料</div>
+            <div>${game.materials.map(m => `<span class="material-tag">${m}</span>`).join('')}</div>
+          </div>
+          <div class="detail-section">
+            <div class="detail-label">💡 温馨提示</div>
+            <div style="font-size:13px;color:#8B8B8B;line-height:1.6;">${game.tip}</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button class="btn btn-peach btn-sm" style="flex:1;" onclick="InteractModule.markPlayed('${game.id}')">
+              ${isPlayed ? '✅ 已玩过' : '标记已玩'}
+            </button>
+            <button class="btn ${isFav ? 'btn-pink' : 'btn-outline'} btn-sm" style="flex:1;" onclick="InteractModule.toggleFav('${game.id}')">
+              ${isFav ? '❤️ 已收藏' : '🤍 收藏'}
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  toggleGame(id) {
+    if (this.expandedGame === id) {
+      this.expandedGame = null;
+    } else {
+      this.expandedGame = id;
+    }
+    this.renderWeeklyGames();
+    this.renderAllGames();
+  },
+
+  markPlayed(id) {
+    if (DataManager.isGamePlayed(id)) {
+      Utils.toast('已经标记过了');
+      return;
+    }
+    DataManager.addGameRecord(id, 5);
+    this.renderWeeklyGames();
+    this.renderAllGames();
+    Utils.toast('已记录 ✅');
+  },
+
+  toggleFav(id) {
+    DataManager.toggleFavorite(id);
+    this.renderWeeklyGames();
+    this.renderAllGames();
+    Utils.toast(DataManager.isFavorite(id) ? '已收藏 ❤️' : '已取消收藏');
+  }
+};
+
+</script>
+
+<script>
+/* ============================================================
+   第十部分：启动应用 + PWA安装引导
+   ============================================================ */
+let deferredPrompt = null;
+
+// 监听PWA安装事件（Android Chrome）
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // 显示"添加到桌面"引导
+  setTimeout(() => {
+    if (deferredPrompt && !localStorage.getItem('pwa_installed_dismissed')) {
+      showInstallPrompt();
+    }
+  }, 5000);
+});
+
+function showInstallPrompt() {
+  // 检查是否已经在独立模式（已安装）
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    return;
+  }
+  Utils.toast('点击下方"添加到主屏幕"可将工作台装到桌面，像App一样使用', 5000);
+}
+
+// Android Chrome安装引导弹窗
+function triggerInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((result) => {
+      if (result.outcome === 'accepted') {
+        localStorage.setItem('pwa_installed_dismissed', '1');
+      }
+      deferredPrompt = null;
+    });
+  }
+}
+
+// iOS检测：iOS Safari不支持beforeinstallprompt，需要手动引导
+function checkIOSInstall() {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone === true;
+  if (isIOS && !isStandalone && !localStorage.getItem('ios_guide_dismissed')) {
+    setTimeout(() => {
+      showIOSGuide();
+    }, 8000);
+  }
+}
+
+function showIOSGuide() {
+  // 创建iOS引导弹窗
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay show';
+  overlay.style.zIndex = '3000';
+  overlay.innerHTML = `
+    <div class="modal" style="max-width:360px;">
+      <div style="text-align:center;margin-bottom:16px;">
+        <div style="font-size:48px;margin-bottom:8px;">📱</div>
+        <div style="font-size:20px;font-weight:600;">添加到桌面</div>
+      </div>
+      <div style="font-size:14px;color:#8B8B8B;line-height:1.8;margin-bottom:20px;">
+        将橙子早教工作台添加到桌面，像App一样随时打开使用：<br><br>
+        <strong>步骤：</strong><br>
+        1. 点击Safari底部的 <strong>分享按钮</strong> <span style="font-size:18px;">⬆️</span><br>
+        2. 选择 <strong>"添加到主屏幕"</strong><br>
+        3. 点击 <strong>"添加"</strong><br>
+        4. 桌面就会出现橙子图标，点击即可使用
+      </div>
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-outline" style="flex:1;" onclick="dismissIOSGuide()">以后再说</button>
+        <button class="btn btn-primary" style="flex:1;" onclick="dismissIOSGuide()">知道了</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function dismissIOSGuide() {
+  const overlays = document.querySelectorAll('.modal-overlay[style*="3000"]');
+  overlays.forEach(o => o.remove());
+  localStorage.setItem('ios_guide_dismissed', '1');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  App.init();
+  checkIOSInstall();
+});
+</script>
+
+</body>
+</html>
