@@ -1,0 +1,25 @@
+{
+  "name": "橙子早教工作台",
+  "short_name": "橙子早教",
+  "description": "0-12个月宝宝早教启蒙工作台，专注力训练、早教启蒙、成长记录、亲子互动",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF8E7",
+  "theme_color": "#FFF8E7",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
